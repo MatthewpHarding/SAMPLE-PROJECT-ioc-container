@@ -38,7 +38,7 @@ let bmw = box.resolve(key: "BMW") as Car
 let mercedes = box.resolve(key: "Mercedes") as Car
 ```
 ## Topics
-### Dependency Injection
+### <!--@START_MENU_TOKEN@-->Dependency Injection<!--@END_MENU_TOKEN@-->
 
 A typical example of dependency injection is when ``Class A`` also requires the usage of ``Class B``. To prevent ``Class A`` from creating ``Class B`` we can invert the control flow by simply passing in this already-instantiated type into the constructor of ``Class A``. Look at the following example:
 
@@ -76,7 +76,7 @@ let instanceOfClassA = box.resolve() as A
 ```
 
 For more information watch this **Google Tech Talk** [https://www.youtube.com/watch?v=acjvKJiOvXw&t=13s](url)
-### SwincyBox - Basic Usage
+### <!--@START_MENU_TOKEN@-->SwincyBox - Basic Usage<!--@END_MENU_TOKEN@-->
 
 Let's consider using the ``SwincyBox framework`` to create ``Car`` objects.
 Firect, We register a closure that understands how to create such ``Car`` objects.
@@ -92,7 +92,7 @@ After registration, we simply ask our ``Box`` 📦 to create ``Car`` objects for
 let car = box.resolve() as Car
 ```
 It's that simple!
-### Shared Box Singleton
+### <!--@START_MENU_TOKEN@-->Shared Box Singleton<!--@END_MENU_TOKEN@-->
 
 We don't include ``singletons`` inside the ``Swincy framework`` as it's not the responsibility of the framework. If we did, it might make life more difficult for client apps that use multiple ``Boxes``.
 
@@ -107,7 +107,7 @@ To access simply write:
 ```
 let box = App.box   // Wow. That was easy!
 ```
-### A More Detailed Example
+### <!--@START_MENU_TOKEN@-->A More Detailed Example<!--@END_MENU_TOKEN@-->
 #### A Virtual Car Showroom 🚗
 
 Let's build a virtual ``Showroom`` of ``Cars``. The ``Car`` manufacturer will be **BMW** and each ``Car`` will contain 1 **Volkswagen (VW)** ``Engine``. We'll keep our ``Showroom`` simple and only stock 2 ``Vehicles``, a ``sportsCar`` and a more-reliable ``familyCar``.
@@ -152,10 +152,10 @@ box.register(key: "sportsCar") { MercedesAMG() as Car } // Now it's Mercedes!
 ```
 If the manufacturer changes our code remains the same! 👏
 
-### Sample Project
+### <!--@START_MENU_TOKEN@-->Sample Project<!--@END_MENU_TOKEN@-->
 The ``Showroom`` example is also used within our sample project. The ``SwincyBoxDemo.xcodeproj`` is a ``UIKit`` project and has not been created as a showcase of coding skill, good architecture or  beautiful UI. It is simply a quick prototype and demonstration of the ``SwincyBox framework`` in action. 
 
-### SwincyBox In Action
+### <!--@START_MENU_TOKEN@-->SwincyBox In Action<!--@END_MENU_TOKEN@-->
 
 Below are a few scenarios and examples of how we may use ``SwincyBox``. 
 
@@ -259,7 +259,7 @@ box.register(key: "familyCar") { r in Car(engine: r.resolve()) as Car }
 let sportsCar = box.resolve(key: "sportsCar") as Car
 let familyCar = box.resolve(key: "familyCar") as Car
 ```
-### Circular Dependencies
+### <!--@START_MENU_TOKEN@-->Circular Dependencies<!--@END_MENU_TOKEN@-->
 #### ⚠️ WARNING - Avoid Circular Dependencies In Your Architecture
 Circular dependencies can cause retain cycles and are usually caused by poor architectural descisions. 😬
 
@@ -350,7 +350,7 @@ box.register(CrashTestDummy.self, life: .permanent) { r in
     return dummy
 }
 ```
-### Transient Circular Dependencies
+### <!--@START_MENU_TOKEN@-->Transient Circular Dependencies<!--@END_MENU_TOKEN@-->
 In the previous section we explained ``.permanent`` circular dependencies with a supported solution. However, if we adopt the same approach with ``.transient`` ``LifeType`` ``services`` the ``weak`` reference quickly is set to ``nil`` by the ARC memory management system.  Why is that?
 
 Let's consider the following registration code for our ``Box`` using a ``.transient``  ``LifeType``. The concept is essentially the same as the ``.permanent`` registration except each ``instance`` can't be connected outside the ``factory closure`` which creates new ``instances`` per call to ``resolve``. Therefore we must register the same logic for each ``Type``.
@@ -387,7 +387,7 @@ let circularRef = car.dummy?.car // ❌ is nil
 If we ``resolve`` ``CrashTestDummy`` no ``strong`` reference is held to the instance of ``SafetyTestCar``. The ``Box`` doesn't increment the ``retain count`` and neither does the ``weak`` reference stored within ``SafetyTestCar``. There is in fact, not even one ``strong`` reference to ``CrashTestDummy`` and the created instance is ``deallocated`` immediately after being returned from the ``resolve`` function.
 
 Essentially the solution here (if any) is to understand our architecture and make good architectural descisions!
-### Storyboard ViewController Properties
+### <!--@START_MENU_TOKEN@-->Storyboard ViewController Properties<!--@END_MENU_TOKEN@-->
 
 ``Storyboards`` can create ``UIViewControllers`` automatically which can make dependency injection somewhat difficult. 
 
@@ -429,13 +429,13 @@ class ShowroomViewController: UIViewController {
 
 
 
-### Thank You 😃
+### <!--@START_MENU_TOKEN@-->Thank You 😃<!--@END_MENU_TOKEN@-->
 
 Thank you to everyone who was a part of this project. This test. And of course, this opportunity.
 ``SwincyBox`` was a pleasure to create and very enjoyable too.
 A great idea by those who suggested it.
 # 📦 ``SwincyBox``
-### 📚 The Files
+### <!--@START_MENU_TOKEN@-->📚 The Files<!--@END_MENU_TOKEN@-->
 ⬇ Download the **MattHardingIOCFramework.zip** file.
 
 It contains 3 folders:
@@ -461,10 +461,8 @@ This folder includes a sample project showcasing the easy use of ``SwincyBox``. 
 
 It may be interesting to look at the ``SwincyBox Helpers`` folder at the top of the project navigator pane. You will find a ``config`` file which can (if you like) be used to register dependencies alongside a property wrapper file to aid automatic dependency injection of ``UIViewController`` stored properties.
 
-### Project Author
+### <!--@START_MENU_TOKEN@-->Project Author<!--@END_MENU_TOKEN@-->
 **Matthew Harding**
- 
-<matthewpharding@gmail.com>
 
 All comments, code suggestions and enhancements are welcome. 
 

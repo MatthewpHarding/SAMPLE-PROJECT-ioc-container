@@ -1,0 +1,11 @@
+framework module SwincyBox {
+  umbrella header "SwincyBox.h"
+
+  export *
+  module * { export * }
+}
+
+module SwincyBox.Swift {
+    header "SwincyBox-Swift.h"
+    requires objc
+}

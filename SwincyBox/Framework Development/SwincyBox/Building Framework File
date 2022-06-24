@@ -1,0 +1,35 @@
+Building The Framework File For Distribution:
+    1. Open the Terminal
+    2. Change location to the parent folder containing SwincyBox.xcodeproj
+    3. Paste ALL the commands below (all in one go) into the Terminal window
+    4. Press enter
+    5. Open the 'build' folder and find the updated 'SwincyBox.xcframework' file which can then be dropped into any Xcode project
+
+
+
+xcodebuild archive \
+-scheme SwincyBox \
+-configuration Release \
+-destination 'generic/platform=iOS' \
+-archivePath './build/SwincyBox.framework-iphoneos.xcarchive' \
+SKIP_INSTALL=NO \
+BUILD_LIBRARY_FOR_DISTRIBUTION=YES
+xcodebuild archive \
+-scheme SwincyBox \
+-configuration Release \
+-destination 'generic/platform=iOS Simulator' \
+-archivePath './build/SwincyBox.framework-iphonesimulator.xcarchive' \
+SKIP_INSTALL=NO \
+BUILD_LIBRARY_FOR_DISTRIBUTION=YES
+xcodebuild archive \
+-scheme SwincyBox \
+-configuration Release \
+-destination 'platform=macOS,arch=x86_64,variant=Mac Catalyst' \
+-archivePath './build/SwincyBox.framework-catalyst.xcarchive' \
+SKIP_INSTALL=NO \
+BUILD_LIBRARY_FOR_DISTRIBUTION=YES
+xcodebuild -create-xcframework \
+-framework './build/SwincyBox.framework-iphonesimulator.xcarchive/Products/Library/Frameworks/SwincyBox.framework' \
+-framework './build/SwincyBox.framework-iphoneos.xcarchive/Products/Library/Frameworks/SwincyBox.framework' \
+-framework './build/SwincyBox.framework-catalyst.xcarchive/Products/Library/Frameworks/SwincyBox.framework' \
+-output './build/SwincyBox.xcframework'
