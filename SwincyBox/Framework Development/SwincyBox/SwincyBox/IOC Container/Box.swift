@@ -25,7 +25,7 @@ public final class Box {
         return services.count
     }
     
-    // MARK: - Clear All Services
+    // MARK: - Clear Registered Services
     
     public func clear() {
         services.removeAll()
