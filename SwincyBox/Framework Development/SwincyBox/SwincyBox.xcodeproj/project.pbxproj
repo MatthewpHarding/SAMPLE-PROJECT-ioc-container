@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		0C360F2C285CC2C9009E3AFC /* ServiceStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C360F2B285CC2C9009E3AFC /* ServiceStorage.swift */; };
 		0C360FCE285F49A8009E3AFC /* CircularDependencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C360FCD285F49A8009E3AFC /* CircularDependencyTests.swift */; };
-		0C360FD2285F8478009E3AFC /* PermanentStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C360FD1285F8478009E3AFC /* PermanentStorage.swift */; };
-		0C360FD4285F848C009E3AFC /* TransientStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C360FD3285F848C009E3AFC /* TransientStorage.swift */; };
 		0C360FD6285F8544009E3AFC /* LifeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C360FD5285F8544009E3AFC /* LifeType.swift */; };
 		0C360FEA285FA4CB009E3AFC /* BasicTests_Transient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C360FE9285FA4CB009E3AFC /* BasicTests_Transient.swift */; };
 		0C360FEC285FA53A009E3AFC /* BasicTests_Permanent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C360FEB285FA53A009E3AFC /* BasicTests_Permanent.swift */; };
@@ -20,7 +18,6 @@
 		0C360FF4285FB340009E3AFC /* ClearTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C360FF3285FB340009E3AFC /* ClearTests.swift */; };
 		0C360FF9285FE316009E3AFC /* ResolvingStructsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C360FF8285FE316009E3AFC /* ResolvingStructsTests.swift */; };
 		0C36102C28609E66009E3AFC /* WeakRefCircularDependencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C36102B28609E66009E3AFC /* WeakRefCircularDependencyTests.swift */; };
-		0C9395F72860C460003BC829 /* TransientStorageWithResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9395F62860C460003BC829 /* TransientStorageWithResolver.swift */; };
 		0C9395FC28645DFF003BC829 /* ChildContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9395FB28645DFF003BC829 /* ChildContainerTests.swift */; };
 		0C9396272865C2B9003BC829 /* Showroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9396212865C2B9003BC829 /* Showroom.swift */; };
 		0C9396282865C2B9003BC829 /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9396222865C2B9003BC829 /* Engine.swift */; };
@@ -52,8 +49,6 @@
 		0C360F2B285CC2C9009E3AFC /* ServiceStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceStorage.swift; sourceTree = "<group>"; };
 		0C360FBA285E25F2009E3AFC /* Building Framework File */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Building Framework File"; sourceTree = "<group>"; };
 		0C360FCD285F49A8009E3AFC /* CircularDependencyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularDependencyTests.swift; sourceTree = "<group>"; };
-		0C360FD1285F8478009E3AFC /* PermanentStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermanentStorage.swift; sourceTree = "<group>"; };
-		0C360FD3285F848C009E3AFC /* TransientStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransientStorage.swift; sourceTree = "<group>"; };
 		0C360FD5285F8544009E3AFC /* LifeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeType.swift; sourceTree = "<group>"; };
 		0C360FE9285FA4CB009E3AFC /* BasicTests_Transient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicTests_Transient.swift; sourceTree = "<group>"; };
 		0C360FEB285FA53A009E3AFC /* BasicTests_Permanent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicTests_Permanent.swift; sourceTree = "<group>"; };
@@ -63,7 +58,6 @@
 		0C360FF3285FB340009E3AFC /* ClearTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearTests.swift; sourceTree = "<group>"; };
 		0C360FF8285FE316009E3AFC /* ResolvingStructsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolvingStructsTests.swift; sourceTree = "<group>"; };
 		0C36102B28609E66009E3AFC /* WeakRefCircularDependencyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRefCircularDependencyTests.swift; sourceTree = "<group>"; };
-		0C9395F62860C460003BC829 /* TransientStorageWithResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransientStorageWithResolver.swift; sourceTree = "<group>"; };
 		0C9395FB28645DFF003BC829 /* ChildContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildContainerTests.swift; sourceTree = "<group>"; };
 		0C9396212865C2B9003BC829 /* Showroom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Showroom.swift; sourceTree = "<group>"; };
 		0C9396222865C2B9003BC829 /* Engine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
@@ -130,9 +124,6 @@
 				0C945780285A38B6008CA04F /* Box.swift */,
 				0C360FD5285F8544009E3AFC /* LifeType.swift */,
 				0C360F2B285CC2C9009E3AFC /* ServiceStorage.swift */,
-				0C360FD1285F8478009E3AFC /* PermanentStorage.swift */,
-				0C360FD3285F848C009E3AFC /* TransientStorage.swift */,
-				0C9395F62860C460003BC829 /* TransientStorageWithResolver.swift */,
 			);
 			path = "IOC Container";
 			sourceTree = "<group>";
@@ -367,12 +358,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C360FD4285F848C009E3AFC /* TransientStorage.swift in Sources */,
 				0C360FD6285F8544009E3AFC /* LifeType.swift in Sources */,
 				0C94576A285A34E5008CA04F /* SwincyBox.docc in Sources */,
 				0C360F2C285CC2C9009E3AFC /* ServiceStorage.swift in Sources */,
-				0C9395F72860C460003BC829 /* TransientStorageWithResolver.swift in Sources */,
-				0C360FD2285F8478009E3AFC /* PermanentStorage.swift in Sources */,
 				0C945781285A38B7008CA04F /* Box.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

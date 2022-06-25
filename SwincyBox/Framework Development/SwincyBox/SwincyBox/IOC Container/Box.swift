@@ -32,7 +32,7 @@ public final class Box {
     }
     
     // MARK: - Registration (without a resolver)
-   
+    
     public func register<T>(_ type: T.Type = T.self, key: String? = nil, life: LifeType = .transient,_ factory: @escaping (() -> T)) {
         
         let key = generateKey(for: type, key: key)
@@ -43,9 +43,9 @@ public final class Box {
         let storage: ServiceStorage = {
             switch life {
             case .transient:
-                return TransientStorage(factory)
+                return TransientStore(factory)
             case .permanent:
-                return PermanentStorage(factory())
+                return PermanentStore(factory())
             }
         }()
         services[key] = storage
@@ -63,9 +63,9 @@ public final class Box {
         let storage: ServiceStorage = {
             switch life {
             case .transient:
-                return TransientStorageWithResolver(factory)
+                return TransientStoreWithResolver(factory)
             case .permanent:
-                return PermanentStorage(factory(self))
+                return PermanentStore(factory(self))
             }
         }()
         services[key] = storage
@@ -125,19 +125,7 @@ public final class Box {
         guard let storage = services[key] else {
             return nil
         }
-        
-        switch storage {
-        case let storage as TransientStorageWithResolver<T>:
-            return storage.constructService(self)
-            
-        case let storage as TransientStorage<T>:
-            return storage.constructService()
-            
-        case let storage as PermanentStorage<T>:
-            return storage.service
-            
-        default: fatalError("SwincyBox: Unsupported storage type")
-        }
+        return storage.returnService(self) as? T
     }
     
     private func resolveUsingParentIfNeeded<T>(_ type: T.Type = T.self, key: String? = nil) -> T {
