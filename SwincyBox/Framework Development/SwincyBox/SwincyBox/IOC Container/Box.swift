@@ -37,7 +37,7 @@ public final class Box {
         
         let key = generateKey(for: type, key: key)
         if let _ = services[key] {
-            logAlreadyRegisteredType(forKey: key, type)
+            logWarning("Already registerd '\(type)' for key '\(key)'")
         }
         
         let storage: ServiceStorage = {
@@ -57,7 +57,7 @@ public final class Box {
         
         let key = generateKey(for: type, key: key)
         if let _ = services[key] {
-            logAlreadyRegisteredType(forKey: key, type)
+            logWarning("Already registerd '\(type)' for key '\(key)'")
         }
         
         let storage: ServiceStorage = {
@@ -78,7 +78,7 @@ public final class Box {
         box.parentBox = self
         box.services = services // copies a snapshot of the existing dictionary. instances remain the same
         if let _ = childBoxes[key] {
-            logAlreadyRegisteredChildBox(forKey: key)
+            logWarning("Already registerd childBox for key '\(key)'")
         }
         childBoxes[key] = box
         return box
@@ -86,7 +86,7 @@ public final class Box {
     
     public func childBox(forKey key: String) -> Box? {
         guard let childBox = childBoxes[key] else {
-            logChildBoxNotFound(forKey: key)
+            logWarning("Child box not found for key '\(key)'")
             return nil
         }
         
@@ -132,20 +132,18 @@ public final class Box {
 
 // MARK: - Logging
 
+/// Logging will only occur during a development build and not within a release build to ensure the performance of client apps is maintained and supported
 extension Box {
     
-    private func logAlreadyRegisteredType<T>(forKey key: String, _ type: T) {
+    private func log(_ string: String) {
+        // NOTE: Printing to the console slows down performance of the app and device. We never want to negatively effect the performance of our client apps even for logging warnings
+        #if DEBUG
         print("Swincy Framework")
-        print("Warning: Already registerd '\(type)' for key '\(key)'")
+        print(string)
+        #endif
     }
     
-    private func logAlreadyRegisteredChildBox(forKey key: String) {
-        print("Swincy Framework")
-        print("Warning: Already registerd childBox for key '\(key)'")
-    }
-    
-    private func logChildBoxNotFound(forKey key: String) {
-        print("Swincy Framework")
-        print("Warning: Child box not found for key '\(key)'")
+    private func logWarning(_ string: String) {
+        log("Warning: " + string)
     }
 }
