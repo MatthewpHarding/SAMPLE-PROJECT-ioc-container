@@ -9,9 +9,7 @@ import XCTest
 @testable import SwincyBox
 
 class DifferentInstanceTests_Transient: XCTestCase {
-
     // MARK: - Setup / Tear Down
-    
     private let box = Box()
 
     override func setUpWithError() throws {
@@ -26,7 +24,6 @@ class DifferentInstanceTests_Transient: XCTestCase {
     }
 
     // MARK: - Unit Tests
-    
     func testThatCarInstancesAreDifferent() throws {
         let car = box.resolve() as Car
         let car2 = box.resolve() as Car
@@ -38,5 +35,4 @@ class DifferentInstanceTests_Transient: XCTestCase {
         let engine2 = box.resolve() as Engine
         XCTAssertTrue(engine !== engine2, "Resolved values are the same instance")
     }
-        
 }
