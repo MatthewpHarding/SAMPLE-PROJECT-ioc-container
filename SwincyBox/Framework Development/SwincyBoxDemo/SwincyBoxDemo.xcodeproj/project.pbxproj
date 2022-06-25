@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0C0B7FF428660CAC008A0B6F /* UIColor+HexValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B7FF328660CAC008A0B6F /* UIColor+HexValue.swift */; };
+		0C0B801A2866322A008A0B6F /* SwincyBox.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C0B80192866322A008A0B6F /* SwincyBox.xcframework */; };
 		0C360F73285D1565009E3AFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C360F72285D1565009E3AFC /* AppDelegate.swift */; };
 		0C360F75285D1565009E3AFC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C360F74285D1565009E3AFC /* SceneDelegate.swift */; };
 		0C360F77285D1565009E3AFC /* ShowroomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C360F76285D1565009E3AFC /* ShowroomViewController.swift */; };
@@ -21,8 +22,6 @@
 		0C361025285FEA59009E3AFC /* Transmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C361013285FEA4A009E3AFC /* Transmission.swift */; };
 		0C361026285FEA59009E3AFC /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C361014285FEA4A009E3AFC /* Vehicle.swift */; };
 		0C361028285FED13009E3AFC /* Dependencies-Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C361027285FED13009E3AFC /* Dependencies-Config.swift */; };
-		0C6EE96128660146000909FE /* SwincyBox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C6EE96028660146000909FE /* SwincyBox.framework */; };
-		0C6EE96228660146000909FE /* SwincyBox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C6EE96028660146000909FE /* SwincyBox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0C93960028650FAF003BC829 /* ShowroomsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9395FF28650FAF003BC829 /* ShowroomsTableViewController.swift */; };
 		0C939610286524E2003BC829 /* Array+SafeAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C93960F286524E2003BC829 /* Array+SafeAccess.swift */; };
 		0C93961328659171003BC829 /* ShowroomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C93961228659171003BC829 /* ShowroomCell.swift */; };
@@ -50,7 +49,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0C6EE96228660146000909FE /* SwincyBox.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -59,6 +57,7 @@
 
 /* Begin PBXFileReference section */
 		0C0B7FF328660CAC008A0B6F /* UIColor+HexValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+HexValue.swift"; sourceTree = "<group>"; };
+		0C0B80192866322A008A0B6F /* SwincyBox.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SwincyBox.xcframework; sourceTree = "<group>"; };
 		0C360F6F285D1565009E3AFC /* SwincyBoxDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwincyBoxDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C360F72285D1565009E3AFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0C360F74285D1565009E3AFC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -75,7 +74,6 @@
 		0C361013285FEA4A009E3AFC /* Transmission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transmission.swift; sourceTree = "<group>"; };
 		0C361014285FEA4A009E3AFC /* Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 		0C361027285FED13009E3AFC /* Dependencies-Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dependencies-Config.swift"; sourceTree = "<group>"; };
-		0C6EE96028660146000909FE /* SwincyBox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwincyBox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C9395FF28650FAF003BC829 /* ShowroomsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowroomsTableViewController.swift; sourceTree = "<group>"; };
 		0C93960F286524E2003BC829 /* Array+SafeAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+SafeAccess.swift"; sourceTree = "<group>"; };
 		0C93961228659171003BC829 /* ShowroomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowroomCell.swift; sourceTree = "<group>"; };
@@ -91,7 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C6EE96128660146000909FE /* SwincyBox.framework in Frameworks */,
+				0C0B801A2866322A008A0B6F /* SwincyBox.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,7 +165,7 @@
 		0C360F86285D171F009E3AFC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0C6EE96028660146000909FE /* SwincyBox.framework */,
+				0C0B80192866322A008A0B6F /* SwincyBox.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
