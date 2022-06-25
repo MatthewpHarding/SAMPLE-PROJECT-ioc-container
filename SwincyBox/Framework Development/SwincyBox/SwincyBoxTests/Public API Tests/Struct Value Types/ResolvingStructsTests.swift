@@ -15,7 +15,6 @@ class ResolvingStructsTests: XCTestCase {
     let box = Box()
 
     override func setUpWithError() throws {
-        
         box.register() { CarHandbook() as CarHandbook }
         box.register() { CarRepairManual() as CarRepairManual }
     }
@@ -27,18 +26,14 @@ class ResolvingStructsTests: XCTestCase {
     // MARK: - Unit Tests
     
     func testCarHandbook() {
-        
         let handbook = box.resolve() as CarHandbook
-        
         XCTAssertTrue("Owning A BMW" == handbook.title, "Unexpected value from boxed protocol")
         XCTAssertTrue("Stefan Quandt" == handbook.author, "Unexpected value from boxed protocol")
         XCTAssertTrue(60 == handbook.pages, "Unexpected value from boxed protocol")
     }
     
     func testCarRepairManual() {
-        
         let handbook = box.resolve() as CarRepairManual
-        
         XCTAssertTrue("Repairing A BMW" == handbook.title, "Unexpected value from boxed protocol")
         XCTAssertTrue("Stefan Quandt" == handbook.author, "Unexpected value from boxed protocol")
         XCTAssertTrue(105 == handbook.pages, "Unexpected value from boxed protocol")
