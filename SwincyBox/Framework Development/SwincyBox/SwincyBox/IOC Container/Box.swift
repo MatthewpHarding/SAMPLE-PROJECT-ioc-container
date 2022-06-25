@@ -31,7 +31,7 @@ public final class Box {
     
     // MARK: - Register Dependecy (without a resolver)
     
-    public func register<T>(_ type: T.Type = T.self, key: String? = nil, life: LifeType = .transient,_ factory: @escaping (() -> T)) {
+    public func register<Service>(_ type: Service.Type = Service.self, key: String? = nil, life: LifeType = .transient,_ factory: @escaping (() -> Service)) {
         
         let serviceKey = serviceKey(for: type, key: key)
         if let _ = services[serviceKey] {
@@ -51,7 +51,7 @@ public final class Box {
     
     // MARK: - Register Dependecy (using a resolver)
     
-    public func register<T>(_ type: T.Type = T.self, key: String? = nil, life: LifeType = .transient,_ factory: @escaping ((Box) -> T)) {
+    public func register<Service>(_ type: Service.Type = Service.self, key: String? = nil, life: LifeType = .transient,_ factory: @escaping ((Box) -> Service)) {
         
         let serviceKey = serviceKey(for: type, key: key)
         if let _ = services[serviceKey] {
@@ -69,7 +69,7 @@ public final class Box {
     
     // MARK: - Resolve Dependency
     
-    public func resolve<T>(_ type: T.Type = T.self, key: String? = nil) -> T {
+    public func resolve<Service>(_ type: Service.Type = Service.self, key: String? = nil) -> Service {
         return resolveUsingParentIfNeeded(type, key: key)
     }
     
@@ -97,17 +97,17 @@ public final class Box {
     
     // MARK: - Internally Resolve Dependency
     
-    private func attempToResolve<T>(_ type: T.Type = T.self, key: String? = nil) -> T? {
+    private func attempToResolve<Service>(_ type: Service.Type = Service.self, key: String? = nil) -> Service? {
         let serviceKey = serviceKey(for: type, key: key)
         guard let storage = services[serviceKey] else {
             return nil
         }
-        return storage.returnService(self) as? T
+        return storage.returnService(self) as? Service
     }
     
-    private func resolveUsingParentIfNeeded<T>(_ type: T.Type = T.self, key: String? = nil) -> T {
+    private func resolveUsingParentIfNeeded<Service>(_ type: Service.Type = Service.self, key: String? = nil) -> Service {
         
-        if let foundService: T = attempToResolve(type, key: key) {
+        if let foundService: Service = attempToResolve(type, key: key) {
             return foundService
         }
         
@@ -120,7 +120,7 @@ public final class Box {
     
     // MARK: - Services Key Generation
     
-    private func serviceKey<T>(for type: T, key: String?) -> String {
+    private func serviceKey<Service>(for type: Service, key: String?) -> String {
         guard let key = key else {
             return "\(type)"
         }
