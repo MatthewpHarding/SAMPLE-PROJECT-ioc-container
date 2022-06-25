@@ -107,6 +107,8 @@ public final class Box {
 // MARK: - Logging
 /// Logging will only occur during a development build and not within a release build to ensure the performance of client apps is maintained and supported
 extension Box {
+    /// A wrapper for the Swift print() command adding a SwincyBox title to each message, whilst also ensuring that no logging occurs during a live release build. Messages will only be logged during a DEBUG Xcode build.
+    /// - Parameter string: The string printed to the console. Each call to log prints the framework name first followed by the string parameter on a new line.
     private func log(_ string: String) {
         // NOTE: Printing to the console slows down performance of the app and device. We never want to negatively affect the performance of our client apps even for logging warnings
         #if DEBUG
@@ -115,6 +117,8 @@ extension Box {
         #endif
     }
     
+    /// A method to print the passed in string message to the console log (within a DEBUG build) also prefixing the text, "Warning: ".
+    /// - Parameter string: The string printed to the console with the added warning prefix.
     private func logWarning(_ string: String) {
         log("Warning: " + string)
     }
