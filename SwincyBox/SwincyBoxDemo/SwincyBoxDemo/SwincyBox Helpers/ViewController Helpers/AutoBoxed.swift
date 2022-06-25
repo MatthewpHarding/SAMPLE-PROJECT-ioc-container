@@ -8,10 +8,10 @@
 import Foundation
 import UIKit
 
-// 📦 You can auto inject dependencies into UIViewControllers by using a propertyWrapper. Take a look at ShowroomViewController to see how it's done!
+// 📦 You can auto inject dependencies into UIViewControllers simply by using this propertyWrapper.
+//    Syntax example: @AutoBoxed var showroom: Showroom?
 @propertyWrapper
 public struct AutoBoxed<T> {
-    
     private var service: T?
     
     public init() {}
