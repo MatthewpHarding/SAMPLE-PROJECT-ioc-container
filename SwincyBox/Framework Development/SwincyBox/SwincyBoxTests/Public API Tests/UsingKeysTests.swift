@@ -9,9 +9,7 @@ import XCTest
 @testable import SwincyBox
 
 class UsingKeysTests: XCTestCase {
-
     // MARK: - Setup / Tear Down
-    
     private let box = Box()
 
     override func setUpWithError() throws {
@@ -32,7 +30,6 @@ class UsingKeysTests: XCTestCase {
     }
 
     // MARK: - Unit Tests
-    
     func testThatVehicleInstancesAreDifferent() throws {
         let sportsVehicle = box.resolve(key: "sportsCar") as Vehicle
         let familyVehicle = box.resolve(key: "familyCar") as Vehicle
