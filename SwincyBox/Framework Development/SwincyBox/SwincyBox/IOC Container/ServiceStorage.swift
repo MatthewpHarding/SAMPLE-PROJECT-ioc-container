@@ -25,12 +25,12 @@ enum ServiceStorageType {
 
 // MARK: - Permanent
 
-final class PermanentStore<T>: ServiceStorage {
+final class PermanentStore<Service>: ServiceStorage {
     
-    private let service: T
+    private let service: Service
     let storageType: ServiceStorageType = .permanent
     
-    init(_ service: T) {
+    init(_ service: Service) {
         self.service = service
     }
     
@@ -41,12 +41,12 @@ final class PermanentStore<T>: ServiceStorage {
 
 // MARK: - Transient
 
-final class TransientStore<T>: ServiceStorage {
+final class TransientStore<Service>: ServiceStorage {
     
-    private let factory: (() -> T)
+    private let factory: (() -> Service)
     let storageType: ServiceStorageType = .transient
 
-    init(_ factory: @escaping (() -> T)) {
+    init(_ factory: @escaping (() -> Service)) {
         self.factory = factory
     }
     
@@ -57,12 +57,12 @@ final class TransientStore<T>: ServiceStorage {
 
 // MARK: - Transient With Resolver
 
-final class TransientStoreWithResolver<T>: ServiceStorage {
+final class TransientStoreWithResolver<Service>: ServiceStorage {
     
-    private let factory: ((Box) -> T)
+    private let factory: ((Box) -> Service)
     let storageType: ServiceStorageType = .transientWithResolver
 
-    init(_ factory: @escaping ((Box) -> T)) {
+    init(_ factory: @escaping ((Box) -> Service)) {
         self.factory = factory
     }
     
