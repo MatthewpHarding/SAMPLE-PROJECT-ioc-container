@@ -84,11 +84,15 @@ public final class Box {
     }
     
     // MARK: - Service Storage
+    /// A centralised location used to generate a unique key from both the service type and associated key used for service retrieval. The returned key will then be used to store and retrieve the associated service.
+    /// - Returns: A unique key generated from both the service type and associated key used for service retrieval.
     private func serviceKey<Service>(for type: Service, key: String?) -> String {
         guard let key = key else { return "\(type)" }
         return "\(type) - \(key)"
     }
     
+    /// A function to encapsulate a factory method used to generate some instance of a service. This method will return a different type of wrapper for each different life cycle supported by SwincyBox. The passed in factory method accepts a resolver object as an argument, which should be used to resolve any dependencies before returning the service itself.
+    /// - Returns: An type adhering to the service storage protocol which can then be asked to return the service it encapsulates.
     private func wrapServiceFactory<Service>(_ factory: @escaping ((Resolver) -> Service), life: LifeType) -> ServiceStorage {
         switch life {
         case .transient: return TransientStoreWithResolver(factory)
@@ -96,6 +100,8 @@ public final class Box {
         }
     }
     
+    /// A function to encapsulate a factory method used to generate some instance of a service. This method will return a different type of wrapper for each different life cycle supported by SwincyBox. The passed in factory method accepts no arguments and simply returns an instance of the service.
+    /// - Returns: An type adhering to the service storage protocol which can then be asked to return the service it encapsulates.
     private func wrapServiceFactory<Service>(_ factory: @escaping (() -> Service), life: LifeType) -> ServiceStorage {
         switch life {
         case .transient: return TransientStore(factory)
