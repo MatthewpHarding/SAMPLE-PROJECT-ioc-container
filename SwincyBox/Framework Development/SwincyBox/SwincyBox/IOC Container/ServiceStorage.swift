@@ -38,12 +38,18 @@ final class PermanentStore<Service>: ServiceStorage {
 // MARK: - Transient
 /// A wrapper encapsulating and storing a factory method used to generate new instances (known as a service) of a registered type. The stored function accepts no arguments and simply returns a newly instantiated type per each request.
 final class TransientStore<Service>: ServiceStorage {
+    /// The factory method used to create an instance of the service each time it is requested.
     private let factory: (() -> Service)
-
+    
+    /// /// Initialiser for a transient store of a registered service.
+    /// - Parameter factory: The factory method used to create an instance of the service each time it is requested.
     init(_ factory: @escaping (() -> Service)) {
         self.factory = factory
     }
     
+    /// This function returns a newly created service with each function call.
+    /// - Parameter resolver: The resolver object to be used when resolving dependencies, however in this transient storage type it is simple ignored.
+    /// - Returns: A newly created service with each function call.
     func returnService(_ resolver: Resolver) -> Any {
         return factory()
     }
