@@ -20,11 +20,11 @@ public final class Box {
     
     // MARK: - Exposed Public API
     
-    public init () { }
-    
     public var numberOfRegisteredServices: Int {
         return services.count
     }
+    
+    public init () { }
     
     // MARK: - Clear Registered Services
     
