@@ -45,6 +45,7 @@ public final class Box {
         registerServiceStore(wrapServiceFactory(factory, life: life), type, key)
     }
     
+    /// Call this function to store the wrapped service within the dictionary of registered services.
     private func registerServiceStore<Service>(_ serviceStore: ServiceStorage, _ type: Service.Type, _ key: String?) {
         let serviceKey = serviceKey(for: type, key: key)
         if let _ = services[serviceKey] {
@@ -61,6 +62,9 @@ public final class Box {
     }
     
     // MARK: - Childbox
+    /// Calling this function creates and embeds a new child box, which can then be used as a first responder for all calls to resolve cascading upwards through parent boxes until the dependency is resolved.
+    /// - Parameter key: A unique string key identifier to be used when retrieving each specific box.
+    /// - Returns: A newly created child box stored and retrieved by passed in key identifier.
     public func addChildBox(forKey key: String) -> Box {
         let box = Box()
         box.parentBox = self
@@ -72,6 +76,9 @@ public final class Box {
         return box
     }
     
+    /// Calling this function returns an optional Box for the unique key used to create the box.
+    /// - Parameter key: A unique string key identifier to be used when retrieving each specific box.
+    /// - Returns: A child box associated and stored with the passed in key.
     public func childBox(forKey key: String) -> Box? {
         guard let childBox = childBoxes[key] else {
             logWarning("Child box not found for key '\(key)'")
@@ -81,11 +88,15 @@ public final class Box {
     }
     
     // MARK: - Internally Resolve Dependency
+    /// The first method to be called within the lightly recursive approach of cascading upwards through the chain of parent boxes. Similar to becoming a first responder, each child box is given an opportunity to return the service requested using this method attempToResolve().
+    /// - Returns: An optional value representing the registered service. Nil if no such service could be resolved by this box.
     private func attempToResolve<Service>(_ type: Service.Type = Service.self, key: String? = nil) -> Service? {
         guard let storage = services[serviceKey(for: type, key: key)] else { return nil }
         return storage.returnService(self) as? Service
     }
     
+    /// The root method for resolving a registered service. If the box cannot resolve the service then we recursively search each parent box until the type is resolved or we reach the end of the parent chain, in which case a fatalError() is thrown.
+    /// - Returns: an instance of the registered type associated with both the generically assigned type (using Swift Generics) and the supplied key identifier.
     private func resolveUsingParentIfNeeded<Service>(_ type: Service.Type = Service.self, key: String? = nil) -> Service {
         guard let service = attempToResolve(type, key: key) ?? parentBox?.resolveUsingParentIfNeeded(type, key: key) else {
             fatalError("SwincyBox: Dependency not registered for type '\(type)'")
