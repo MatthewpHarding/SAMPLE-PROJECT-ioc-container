@@ -93,7 +93,7 @@ public final class Box {
         return childBox
     }
     
-    // MARK: - Resolution
+    // MARK: - Resolve Dependency
     
     public func resolve<T>(_ type: T.Type = T.self, key: String? = nil) -> T {
         return resolveUsingParentIfNeeded(type, key: key)
