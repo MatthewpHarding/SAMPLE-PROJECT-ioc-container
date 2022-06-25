@@ -90,16 +90,10 @@ public final class Box {
     }
     
     private func resolveUsingParentIfNeeded<Service>(_ type: Service.Type = Service.self, key: String? = nil) -> Service {
-        
-        if let foundService: Service = attempToResolve(type, key: key) {
-            return foundService
-        }
-        
-        guard let box = parentBox else {
+        guard let service = attempToResolve(type, key: key) ?? parentBox?.resolveUsingParentIfNeeded(type, key: key) else {
             fatalError("SwincyBox: Dependency not registered for type '\(type)'")
         }
-        
-        return box.resolveUsingParentIfNeeded(type, key: key)
+        return service
     }
     
     // MARK: - Service Storage
