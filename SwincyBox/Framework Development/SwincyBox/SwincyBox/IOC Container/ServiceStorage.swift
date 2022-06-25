@@ -10,14 +10,7 @@ import Foundation
 // MARK: - Protocol
 
 protocol ServiceStorage {
-    var storageType: ServiceStorageType { get }
     func returnService(_ resolver: Resolver) -> Any
-}
-
-enum ServiceStorageType {
-    case permanent
-    case transient
-    case transientWithResolver
 }
 
 // MARK: - Permanent
@@ -25,7 +18,6 @@ enum ServiceStorageType {
 final class PermanentStore<Service>: ServiceStorage {
     
     private let service: Service
-    let storageType: ServiceStorageType = .permanent
     
     init(_ service: Service) {
         self.service = service
@@ -41,7 +33,6 @@ final class PermanentStore<Service>: ServiceStorage {
 final class TransientStore<Service>: ServiceStorage {
     
     private let factory: (() -> Service)
-    let storageType: ServiceStorageType = .transient
 
     init(_ factory: @escaping (() -> Service)) {
         self.factory = factory
@@ -57,7 +48,6 @@ final class TransientStore<Service>: ServiceStorage {
 final class TransientStoreWithResolver<Service>: ServiceStorage {
     
     private let factory: ((Resolver) -> Service)
-    let storageType: ServiceStorageType = .transientWithResolver
 
     init(_ factory: @escaping ((Resolver) -> Service)) {
         self.factory = factory
