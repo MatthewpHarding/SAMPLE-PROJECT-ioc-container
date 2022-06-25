@@ -11,33 +11,27 @@ import Foundation
 public typealias Resolver = Box
 
 public final class Box {
-    
     // MARK: - Properties
-    
     private var services: [String : ServiceStorage] = [:]
     private weak var parentBox: Box? = nil
     private var childBoxes: [String: Box] = [:]
     
     // MARK: - Exposed Public API
-    
     public var registeredServiceCount: Int { return services.count }
     
     public init () { }
     
     // MARK: - Clear Registered Services
-    
     public func clear() {
         services.removeAll()
     }
     
     // MARK: - Register Dependecy (without a resolver)
-    
     public func register<Service>(_ type: Service.Type = Service.self, key: String? = nil, life: LifeType = .transient, _ factory: @escaping (() -> Service)) {
         registerServiceStore(wrapServiceFactory(factory, life: life), type, key)
     }
     
     // MARK: - Register Dependecy (using a resolver)
-    
     public func register<Service>(_ type: Service.Type = Service.self, key: String? = nil, life: LifeType = .transient, _ factory: @escaping ((Resolver) -> Service)) {
         registerServiceStore(wrapServiceFactory(factory, life: life), type, key)
     }
@@ -51,13 +45,11 @@ public final class Box {
     }
     
     // MARK: - Resolve Dependency
-    
     public func resolve<Service>(_ type: Service.Type = Service.self, key: String? = nil) -> Service {
         return resolveUsingParentIfNeeded(type, key: key)
     }
     
     // MARK: - Childbox
-    
     public func addChildBox(forKey key: String) -> Box {
         let box = Box()
         box.parentBox = self
@@ -78,7 +70,6 @@ public final class Box {
     }
     
     // MARK: - Internally Resolve Dependency
-    
     private func attempToResolve<Service>(_ type: Service.Type = Service.self, key: String? = nil) -> Service? {
         guard let storage = services[serviceKey(for: type, key: key)] else { return nil }
         return storage.returnService(self) as? Service
@@ -92,7 +83,6 @@ public final class Box {
     }
     
     // MARK: - Service Storage
-    
     private func serviceKey<Service>(for type: Service, key: String?) -> String {
         guard let key = key else { return "\(type)" }
         return "\(type) - \(key)"
@@ -114,10 +104,8 @@ public final class Box {
 }
 
 // MARK: - Logging
-
 /// Logging will only occur during a development build and not within a release build to ensure the performance of client apps is maintained and supported
 extension Box {
-    
     private func log(_ string: String) {
         // NOTE: Printing to the console slows down performance of the app and device. We never want to negatively affect the performance of our client apps even for logging warnings
         #if DEBUG
