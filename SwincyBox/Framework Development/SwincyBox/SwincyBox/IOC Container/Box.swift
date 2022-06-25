@@ -97,27 +97,6 @@ public final class Box {
     
     public func resolve<T>(_ type: T.Type = T.self, key: String? = nil) -> T {
         return resolveUsingParentIfNeeded(type, key: key)
-        
-        /*
-        let key = generateKey(for: type, key: key)
-        guard let storage = services[key] else {
-            logResolutionFailure(forKey: key, type)
-            fatalError("SwincyBox: Dependency not registered for type '\(T.self)'")
-        }
-        
-        switch storage {
-        case let storage as TransientStorageWithResolver<T>:
-            return storage.constructService(self)
-            
-        case let storage as TransientStorage<T>:
-            return storage.constructService()
-            
-        case let storage as PermanentStorage<T>:
-            return storage.service
-            
-        default: fatalError("SwincyBox: Unsupported storage type")
-        }
-         */
     }
     
     public func attempToResolve<T>(_ type: T.Type = T.self, key: String? = nil) -> T? {
