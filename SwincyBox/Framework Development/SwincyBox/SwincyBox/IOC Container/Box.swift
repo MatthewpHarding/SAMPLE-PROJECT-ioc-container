@@ -7,6 +7,9 @@
 
 import Foundation
 
+/// Resolver typealias has been used to aid the documentation and readability of the code by using standardised IOC Framework terminology
+public typealias Resolver = Box
+
 public final class Box {
     
     // MARK: - Properties
@@ -51,7 +54,7 @@ public final class Box {
     
     // MARK: - Register Dependecy (using a resolver)
     
-    public func register<Service>(_ type: Service.Type = Service.self, key: String? = nil, life: LifeType = .transient,_ factory: @escaping ((Box) -> Service)) {
+    public func register<Service>(_ type: Service.Type = Service.self, key: String? = nil, life: LifeType = .transient,_ factory: @escaping ((Resolver) -> Service)) {
         
         let serviceKey = serviceKey(for: type, key: key)
         if let _ = services[serviceKey] {
