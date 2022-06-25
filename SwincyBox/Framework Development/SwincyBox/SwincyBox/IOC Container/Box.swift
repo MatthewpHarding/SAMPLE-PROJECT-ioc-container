@@ -34,13 +34,13 @@ public final class Box {
     
     // MARK: - Register Dependecy (without a resolver)
     
-    public func register<Service>(_ type: Service.Type = Service.self, key: String? = nil, life: LifeType = .transient,_ factory: @escaping (() -> Service)) {
+    public func register<Service>(_ type: Service.Type = Service.self, key: String? = nil, life: LifeType = .transient, _ factory: @escaping (() -> Service)) {
         registerServiceStore(wrapServiceFactory(factory, life: life), type, key)
     }
     
     // MARK: - Register Dependecy (using a resolver)
     
-    public func register<Service>(_ type: Service.Type = Service.self, key: String? = nil, life: LifeType = .transient,_ factory: @escaping ((Resolver) -> Service)) {
+    public func register<Service>(_ type: Service.Type = Service.self, key: String? = nil, life: LifeType = .transient, _ factory: @escaping ((Resolver) -> Service)) {
         registerServiceStore(wrapServiceFactory(factory, life: life), type, key)
     }
     
