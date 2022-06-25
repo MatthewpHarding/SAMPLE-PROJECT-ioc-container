@@ -62,10 +62,8 @@ public final class Box {
         
         let storage: ServiceStorage = {
             switch life {
-            case .transient:
-                return TransientStoreWithResolver(factory)
-            case .permanent:
-                return PermanentStore(factory(self))
+            case .transient: return TransientStoreWithResolver(factory)
+            case .permanent: return PermanentStore(factory(self))
             }
         }()
         services[key] = storage
