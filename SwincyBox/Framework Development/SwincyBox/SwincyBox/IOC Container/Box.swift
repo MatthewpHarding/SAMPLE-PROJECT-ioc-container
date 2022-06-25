@@ -35,39 +35,23 @@ public final class Box {
     // MARK: - Register Dependecy (without a resolver)
     
     public func register<Service>(_ type: Service.Type = Service.self, key: String? = nil, life: LifeType = .transient,_ factory: @escaping (() -> Service)) {
-        
-        let serviceKey = serviceKey(for: type, key: key)
-        if let _ = services[serviceKey] {
-            logWarning("Already registerd '\(type)' for key '\(String(describing: key))'")
-        }
-        
-        let storage: ServiceStorage = {
-            switch life {
-            case .transient:
-                return TransientStore(factory)
-            case .permanent:
-                return PermanentStore(factory())
-            }
-        }()
-        services[serviceKey] = storage
+        registerServiceStore(wrapServiceFactory(factory, life: life), type, key)
     }
     
     // MARK: - Register Dependecy (using a resolver)
     
     public func register<Service>(_ type: Service.Type = Service.self, key: String? = nil, life: LifeType = .transient,_ factory: @escaping ((Resolver) -> Service)) {
+        registerServiceStore(wrapServiceFactory(factory, life: life), type, key)
+    }
+    
+    private func registerServiceStore<Service>(_ serviceStore: ServiceStorage, _ type: Service.Type, _ key: String?) {
         
         let serviceKey = serviceKey(for: type, key: key)
         if let _ = services[serviceKey] {
             logWarning("Already registerd '\(type)' for key '\(String(describing: key))'")
         }
         
-        let storage: ServiceStorage = {
-            switch life {
-            case .transient: return TransientStoreWithResolver(factory)
-            case .permanent: return PermanentStore(factory(self))
-            }
-        }()
-        services[serviceKey] = storage
+        services[serviceKey] = serviceStore
     }
     
     // MARK: - Resolve Dependency
@@ -120,13 +104,27 @@ public final class Box {
         return box.resolveUsingParentIfNeeded(type, key: key)
     }
     
-    // MARK: - Services Key Generation
+    // MARK: - Service Storage
     
     private func serviceKey<Service>(for type: Service, key: String?) -> String {
         guard let key = key else {
             return "\(type)"
         }
         return "\(type) - \(key)"
+    }
+    
+    private func wrapServiceFactory<Service>(_ factory: @escaping ((Resolver) -> Service), life: LifeType) -> ServiceStorage {
+        switch life {
+        case .transient: return TransientStoreWithResolver(factory)
+        case .permanent: return PermanentStore(factory(self))
+        }
+    }
+    
+    private func wrapServiceFactory<Service>(_ factory: @escaping (() -> Service), life: LifeType) -> ServiceStorage {
+        switch life {
+        case .transient: return TransientStore(factory)
+        case .permanent: return PermanentStore(factory())
+        }
     }
 }
 
