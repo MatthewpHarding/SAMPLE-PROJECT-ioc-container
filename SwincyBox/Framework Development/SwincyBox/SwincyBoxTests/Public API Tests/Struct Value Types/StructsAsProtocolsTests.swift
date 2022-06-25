@@ -9,9 +9,7 @@ import XCTest
 @testable import SwincyBox
 
 class StructsAsProtocolsTests: XCTestCase {
-
     // MARK: - Setup / Tear Down
-    
     let box = Box()
 
     override func setUpWithError() throws {
