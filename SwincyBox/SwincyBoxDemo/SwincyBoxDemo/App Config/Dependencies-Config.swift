@@ -13,16 +13,12 @@ import SwincyBox
 extension App {
     
     func registerRootDependencies() {
-        
         // BMW and Mercedes both use Volkswagen engines
         // Q: How can we cleverly handle this?
-        box.register(Transmission.self) {
-            
+        box.register() {
             // 📦 We can register this Engine as the 'Transmission' protocol resulting in ALL Transmission dependencies becoming VW Engine Models
-            
-            return Engine(make: "VW", model: "White-Label Engine v5.0", gears: 6)
+            return Engine(make: "VW", model: "White-Label Engine v5.0", gears: 6) as Transmission
         }
-        
         /*
          BMW and Mercedes register different vehicles, however in this example app
          BOTH brands create their vehicles using Volkswagen engines
@@ -59,7 +55,6 @@ extension App {
         // MERC Box contains MERC Showroom + MERC Cars
         let mercBox = box.addChildBox(forKey: Keys.Box.mercedesBox)
         setUpMercedesCars(withChildBox: mercBox)
-        
     }
 }
 
