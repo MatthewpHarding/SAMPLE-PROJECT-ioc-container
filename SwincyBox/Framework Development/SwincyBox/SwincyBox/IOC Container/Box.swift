@@ -137,7 +137,7 @@ public final class Box {
 extension Box {
     
     private func log(_ string: String) {
-        // NOTE: Printing to the console slows down performance of the app and device. We never want to negatively effect the performance of our client apps even for logging warnings
+        // NOTE: Printing to the console slows down performance of the app and device. We never want to negatively affect the performance of our client apps even for logging warnings
         #if DEBUG
         print("Swincy Framework")
         print(string)
