@@ -116,7 +116,7 @@ public final class Box {
         }
         
         guard let box = parentBox else {
-            fatalError("SwincyBox: Dependency not registered for type '\(T.self)'")
+            fatalError("SwincyBox: Dependency not registered for type '\(type)'")
         }
         
         return box.resolveUsingParentIfNeeded(type, key: key)
