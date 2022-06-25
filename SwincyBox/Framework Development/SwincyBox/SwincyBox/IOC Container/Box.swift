@@ -105,9 +105,7 @@ public final class Box {
     // MARK: - Service Storage
     
     private func serviceKey<Service>(for type: Service, key: String?) -> String {
-        guard let key = key else {
-            return "\(type)"
-        }
+        guard let key = key else { return "\(type)" }
         return "\(type) - \(key)"
     }
     
