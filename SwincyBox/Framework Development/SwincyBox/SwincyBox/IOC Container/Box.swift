@@ -71,6 +71,12 @@ public final class Box {
         services[key] = storage
     }
     
+    // MARK: - Resolve Dependency
+    
+    public func resolve<T>(_ type: T.Type = T.self, key: String? = nil) -> T {
+        return resolveUsingParentIfNeeded(type, key: key)
+    }
+    
     // MARK: - Childbox
     
     public func addChildBox(forKey key: String) -> Box {
@@ -93,11 +99,7 @@ public final class Box {
         return childBox
     }
     
-    // MARK: - Resolve Dependency
-    
-    public func resolve<T>(_ type: T.Type = T.self, key: String? = nil) -> T {
-        return resolveUsingParentIfNeeded(type, key: key)
-    }
+    // MARK: - Internally Resolve Dependency
     
     private func attempToResolve<T>(_ type: T.Type = T.self, key: String? = nil) -> T? {
         let key = generateKey(for: type, key: key)
