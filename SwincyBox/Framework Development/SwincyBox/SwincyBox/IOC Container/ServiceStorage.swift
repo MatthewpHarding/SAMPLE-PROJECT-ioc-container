@@ -10,13 +10,11 @@ import Foundation
 // MARK: - Protocol
 
 protocol ServiceStorage {
-    
     var storageType: ServiceStorageType { get }
     func returnService(_ resolver: Resolver) -> Any
 }
 
 enum ServiceStorageType {
-    
     case permanent
     case transient
     case transientWithResolver
