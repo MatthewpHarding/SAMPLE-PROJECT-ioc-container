@@ -8,15 +8,12 @@
 import Foundation
 
 // MARK: - Protocol
-
 protocol ServiceStorage {
     func returnService(_ resolver: Resolver) -> Any
 }
 
 // MARK: - Permanent
-
 final class PermanentStore<Service>: ServiceStorage {
-    
     private let service: Service
     
     init(_ service: Service) {
@@ -29,9 +26,7 @@ final class PermanentStore<Service>: ServiceStorage {
 }
 
 // MARK: - Transient
-
 final class TransientStore<Service>: ServiceStorage {
-    
     private let factory: (() -> Service)
 
     init(_ factory: @escaping (() -> Service)) {
@@ -44,9 +39,7 @@ final class TransientStore<Service>: ServiceStorage {
 }
 
 // MARK: - Transient With Resolver
-
 final class TransientStoreWithResolver<Service>: ServiceStorage {
-    
     private let factory: ((Resolver) -> Service)
 
     init(_ factory: @escaping ((Resolver) -> Service)) {
@@ -57,5 +50,3 @@ final class TransientStoreWithResolver<Service>: ServiceStorage {
         return factory(resolver)
     }
 }
-
-
