@@ -21,7 +21,7 @@ import XCTest
 // MARK: - Test Models With Circular Dependencies
 
 private class CrashTestDummy {
-    var car: SafetyTestCar              // 💡 Coding Test Discussion: A strong reference is safely used here
+    var car: SafetyTestCar              // 💡 A strong reference is used here
     
     init (car: SafetyTestCar) {
         self.car = car
@@ -29,7 +29,7 @@ private class CrashTestDummy {
 }
 
 private class SafetyTestCar {
-    weak var driver: CrashTestDummy?    // 💡 Coding Test Discussion: This connection will only exist while an instance of CrashTestDummy is held within the box (or at least 1 other reference but obvisouly that wont be a 'safe' scenario).
+    weak var driver: CrashTestDummy?    // 💡 Discussion: A connection here will only exist while an instance of CrashTestDummy is stored somewhere else, like in the box it was registered. However, if no box or entity stores a strong reference then it will be immediately released from memory setting this property to nil.
     
     init(driver: CrashTestDummy?) {
         self.driver = driver
@@ -45,9 +45,7 @@ class WeakRefCircularDependencyTests_permanent: XCTestCase {
     let box = Box()
 
     override func setUpWithError() throws {
-        
         box.register(SafetyTestCar.self, life: .permanent) { SafetyTestCar(driver: nil) }
-        
         box.register(CrashTestDummy.self, life: .permanent) { resolver in
             let driver = CrashTestDummy(car: resolver.resolve())
             let car = driver.car
@@ -63,7 +61,6 @@ class WeakRefCircularDependencyTests_permanent: XCTestCase {
     // MARK: - Unit Tests
     
     func testDriverCircularDependency() {
-        
         let driver = box.resolve() as CrashTestDummy
         XCTAssertNotNil(driver.car.driver, "Unexpected value of nil found in circular dependency property driver.car.driver")
     }
@@ -106,7 +103,6 @@ class WeakCircularDependencyTests_transient: XCTestCase {
     // MARK: - Unit Tests
     
     func testDriverCircularDependency() {
-        
         let driver = box.resolve() as CrashTestDummy
         XCTAssertNotNil(driver.car.driver, "Unexpected value of nil found in circular dependency property driver.car.driver")
     }
@@ -116,5 +112,4 @@ class WeakCircularDependencyTests_transient: XCTestCase {
         let car = box.resolve() as SafetyTestCar
         XCTAssertNil(car.driver?.car, "Expected nil reference in circular dependency property but value found")
     }
-    
 }
