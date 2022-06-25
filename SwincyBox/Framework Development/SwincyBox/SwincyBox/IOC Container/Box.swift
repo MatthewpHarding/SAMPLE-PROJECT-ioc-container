@@ -113,7 +113,6 @@ public final class Box {
             return foundService
         }
         
-        // parent box
         guard let box = parentBox else {
             fatalError("SwincyBox: Dependency not registered for type '\(T.self)'")
         }
