@@ -49,7 +49,6 @@ public final class Box {
         if let _ = services[serviceKey] {
             logWarning("Already registerd '\(type)' for key '\(String(describing: key))'")
         }
-        
         services[serviceKey] = serviceStore
     }
     
@@ -77,7 +76,6 @@ public final class Box {
             logWarning("Child box not found for key '\(key)'")
             return nil
         }
-        
         return childBox
     }
     
