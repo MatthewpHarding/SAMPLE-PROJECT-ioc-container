@@ -9,9 +9,7 @@ import XCTest
 @testable import SwincyBox
 
 class ClearTests: XCTestCase {
-
     // MARK: - Setup / Tear Down
-    
     private let box = Box()
 
     override func setUpWithError() throws {
@@ -26,7 +24,6 @@ class ClearTests: XCTestCase {
     }
 
     // MARK: - Unit Tests
-    
     func testThatServicesAreRegistered() throws {
         XCTAssertTrue(2 == box.registeredServiceCount, "Unexpected number of registered services")
     }
