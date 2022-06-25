@@ -15,7 +15,6 @@ class AppLaunchTests: XCTestCase {
         XCTAssertNotNil(app.bmwShowroom, "BMW Showroom has not been properly registered within the SwincyBox Framework")
         XCTAssertNotNil(app.mercederShowroom, "Mercedes Showroom has not been properly registered within the SwincyBox Framework")
     }
-
 }
 
 
