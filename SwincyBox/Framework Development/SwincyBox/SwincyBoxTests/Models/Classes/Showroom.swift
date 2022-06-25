@@ -9,14 +9,12 @@ import Foundation
 
 
 // MARK: - Enum
-
 enum ShowroomShopWindow {
     case familyDriving
     case funMiddleAgedDriving
 }
 
 // MARK: - Showroom Declaration
-
 /*
     NOTE: 📦
     We use Classes for Showroom, Car and Engine to demonstrate
@@ -36,7 +34,6 @@ class Showroom {
 }
 
 // MARK: - Shop Window
-
 extension Showroom {
     var shopWindowVehicle: Vehicle {
         get {
