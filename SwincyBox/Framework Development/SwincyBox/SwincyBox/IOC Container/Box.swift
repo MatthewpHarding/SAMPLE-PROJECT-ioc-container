@@ -31,7 +31,7 @@ public final class Box {
         services.removeAll()
     }
     
-    // MARK: - Registration (without a resolver)
+    // MARK: - Register Dependecy (without a resolver)
     
     public func register<T>(_ type: T.Type = T.self, key: String? = nil, life: LifeType = .transient,_ factory: @escaping (() -> T)) {
         
@@ -51,7 +51,7 @@ public final class Box {
         services[key] = storage
     }
     
-    // MARK: - Registration (using a resolver)
+    // MARK: - Register Dependecy (using a resolver)
     
     public func register<T>(_ type: T.Type = T.self, key: String? = nil, life: LifeType = .transient,_ factory: @escaping ((Box) -> T)) {
         
