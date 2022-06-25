@@ -9,9 +9,7 @@ import XCTest
 @testable import SwincyBox
 
 class ResolvingAsProtocolTests: XCTestCase {
-
     // MARK: - Setup / Tear Down
-    
     private let box = Box()
 
     override func setUpWithError() throws {
@@ -26,7 +24,6 @@ class ResolvingAsProtocolTests: XCTestCase {
     }
 
     // MARK: - Unit Tests
-    
     func testRecievedVehiclePropertyValues() throws {
         let vehicle = box.resolve() as Vehicle
         XCTAssertTrue(Car.self == type(of: vehicle), "Unexpected type returned from box")
