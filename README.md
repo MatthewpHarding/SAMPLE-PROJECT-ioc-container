@@ -463,8 +463,6 @@ It may be interesting to look at the ``SwincyBox Helpers`` folder at the top of 
 
 ### Project Author
 **Matthew Harding**
- 
-<matthewpharding@gmail.com>
 
 All comments, code suggestions and enhancements are welcome. 
 
