@@ -9,7 +9,6 @@ import XCTest
 import SwincyBox
 
 class ChildContainerTests: XCTestCase {
-
     let rootBox = Box()
     var bmwBox: Box!
     var mercedesBox: Box!
@@ -85,7 +84,6 @@ class ChildContainerTests: XCTestCase {
     }
     
     // MARK: - BMW Showroom Tests
-    
     func testThatBMWUseVWEngines() throws {
         let box: Box = bmwBox
         let showroom = box.resolve() as Showroom
@@ -107,7 +105,6 @@ class ChildContainerTests: XCTestCase {
     }
     
     // MARK: - Mercedes Showroom Tests
-    
     func testThatMercedesUseVWEngines() throws {
         let box: Box = mercedesBox
         let showroom = box.resolve() as Showroom
