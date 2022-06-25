@@ -101,8 +101,7 @@ public final class Box {
     // MARK: - Internally Resolve Dependency
     
     private func attempToResolve<Service>(_ type: Service.Type = Service.self, key: String? = nil) -> Service? {
-        let serviceKey = serviceKey(for: type, key: key)
-        guard let storage = services[serviceKey] else {
+        guard let storage = services[serviceKey(for: type, key: key)] else {
             return nil
         }
         return storage.returnService(self) as? Service
