@@ -20,9 +20,7 @@ public final class Box {
     
     // MARK: - Exposed Public API
     
-    public var registeredServiceCount: Int {
-        return services.count
-    }
+    public var registeredServiceCount: Int { return services.count }
     
     public init () { }
     
