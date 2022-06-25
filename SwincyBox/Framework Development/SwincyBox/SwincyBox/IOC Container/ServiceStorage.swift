@@ -10,18 +10,26 @@ import Foundation
 // MARK: - Protocol
 /// This protocol declares an interface to retrieve a registered service from a storage wrapper, which either generates, instantiates or provides single access to the service it encapsulates or generates. A method is simply called to return the associated service. How the service is stored or instantiated is of no importance here.
 protocol ServiceStorage {
+    /// Interface for retrieving an instance of the service stored
+    /// - Returns: An instance of the service stored
     func returnService(_ resolver: Resolver) -> Any
 }
 
 // MARK: - Permanent
 /// A wrapper encapsulating the single instance of a registered type. This class will simply store the already instantiated type and return it when requested.
 final class PermanentStore<Service>: ServiceStorage {
+    /// The stored instance of the service which will be returned when requested.
     private let service: Service
     
+    /// Initialiser for a permanent store of a registered service.
+    /// - Parameter service: The service to be stored and returned when requested.
     init(_ service: Service) {
         self.service = service
     }
     
+    /// This function returns the stored service supplied by this permanent storage wrapper class.
+    /// - Parameter resolver: The resolver object to be used when resolving dependencies, however in this permanent storage type it is simple ignored.
+    /// - Returns: The stored service.
     func returnService(_ resolver: Resolver) -> Any {
         return service
     }
