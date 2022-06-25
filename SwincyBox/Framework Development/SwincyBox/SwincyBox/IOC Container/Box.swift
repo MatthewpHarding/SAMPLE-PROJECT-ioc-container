@@ -45,7 +45,6 @@ public final class Box {
     }
     
     private func registerServiceStore<Service>(_ serviceStore: ServiceStorage, _ type: Service.Type, _ key: String?) {
-        
         let serviceKey = serviceKey(for: type, key: key)
         if let _ = services[serviceKey] {
             logWarning("Already registerd '\(type)' for key '\(String(describing: key))'")
