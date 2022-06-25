@@ -30,14 +30,14 @@ class ClearTests: XCTestCase {
     
     func testThatServicesAreRegistered() throws {
         
-        XCTAssertTrue(2 == box.numberOfRegisteredServices, "Unexpected number of registered services")
+        XCTAssertTrue(2 == box.registeredServiceCount, "Unexpected number of registered services")
     }
     
     func testClearingAllServices() throws {
         
         box.clear()
         
-        XCTAssertTrue(0 == box.numberOfRegisteredServices, "Unexpected number of registered services")
+        XCTAssertTrue(0 == box.registeredServiceCount, "Unexpected number of registered services")
     }
     
 }
