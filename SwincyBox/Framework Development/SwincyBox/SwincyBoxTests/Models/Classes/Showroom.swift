@@ -38,7 +38,6 @@ class Showroom {
 // MARK: - Shop Window
 
 extension Showroom {
-    
     var shopWindowVehicle: Vehicle {
         get {
             switch shopWindowType {
