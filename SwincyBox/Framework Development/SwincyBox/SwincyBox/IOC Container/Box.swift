@@ -12,7 +12,7 @@ public final class Box {
     // MARK: - Properties
     
     private var services: [String : ServiceStorage] = [:]
-    weak var parentBox: Box? = nil
+    private weak var parentBox: Box? = nil
     private var childBoxes: [String: Box] = [:]
     
     // MARK: - Exposed Public API
