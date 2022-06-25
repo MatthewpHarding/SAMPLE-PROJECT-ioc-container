@@ -13,18 +13,24 @@ public typealias Resolver = Box
 /// A box represents what's known as a container, using terminology often used when discussing the Inversion Of Control principle. Each box is used to register and store dependencies, which are known as services and are either stored or created by the box used during registration. A typical usage of SwincyBox would be accessing one box throughout the application lifecycle. However, multiple boxes can be created with an option to even chain them together as children boxes. Please note that when calling the resolve function on a box it becomes a first responder, cascading up through the parent chain until either a dependency is returned or the end of the chain is found and a fatalError() will be thrown.
 public final class Box {
     // MARK: - Properties
+    /// A store of each registered service, or rather the wrapper type that encapsulates it.
     private var services: [String : ServiceStorage] = [:]
+    /// A weak referenced property linking to the box which created it or nil if it wasn't created by a parent. Parent boxes are used to recursively search upwards to resolve a service.
     private weak var parentBox: Box? = nil
+    /// An array of all child boxes created by calling the addChildBox() function.
     private var childBoxes: [String: Box] = [:]
     
     // MARK: - Exposed Public API
     public var registeredServiceCount: Int { return services.count }
     
+    /// The constructor used to instantiate an instance of a box. After the class has been initialised the class will then be ready to register each service creation factory.
     public init () { }
     
     // MARK: - Clear Registered Services
+    /// Calling this function will remove all of the services registered with this current box
     public func clear() {
         services.removeAll()
+        childBoxes.forEach { $0.value.clear() }
     }
     
     // MARK: - Register Dependecy (without a resolver)
@@ -46,6 +52,8 @@ public final class Box {
     }
     
     // MARK: - Resolve Dependency
+    /// Call this function to resolve (generate or retrieve) an instance of a type of a registered service. If the service has not yet been registered a fatalError() will be thrown. All services must be registered before the first call to resolve for the matching type with a matching key (or nil). Call this method once only within the application lifecycle.
+    /// - Returns: An instance of the service requested. The type of the instance returned may only be different from the typecast it was registered for, either through inheritance or protocol adherence. However, it must match the type it was registered with otherwise a fatalError() is thrown.
     public func resolve<Service>(_ type: Service.Type = Service.self, key: String? = nil) -> Service {
         return resolveUsingParentIfNeeded(type, key: key)
     }
