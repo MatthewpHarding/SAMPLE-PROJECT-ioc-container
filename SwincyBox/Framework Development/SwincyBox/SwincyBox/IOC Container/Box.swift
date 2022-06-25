@@ -35,7 +35,7 @@ public final class Box {
     
     public func register<T>(_ type: T.Type = T.self, key: String? = nil, life: LifeType = .transient,_ factory: @escaping (() -> T)) {
         
-        let key = generateKey(for: type, key: key)
+        let key = generateServiceKey(for: type, key: key)
         if let _ = services[key] {
             logWarning("Already registerd '\(type)' for key '\(key)'")
         }
@@ -55,7 +55,7 @@ public final class Box {
     
     public func register<T>(_ type: T.Type = T.self, key: String? = nil, life: LifeType = .transient,_ factory: @escaping ((Box) -> T)) {
         
-        let key = generateKey(for: type, key: key)
+        let key = generateServiceKey(for: type, key: key)
         if let _ = services[key] {
             logWarning("Already registerd '\(type)' for key '\(key)'")
         }
@@ -102,7 +102,7 @@ public final class Box {
     // MARK: - Internally Resolve Dependency
     
     private func attempToResolve<T>(_ type: T.Type = T.self, key: String? = nil) -> T? {
-        let key = generateKey(for: type, key: key)
+        let key = generateServiceKey(for: type, key: key)
         guard let storage = services[key] else {
             return nil
         }
@@ -124,7 +124,7 @@ public final class Box {
     
     // MARK: - Services Key Generation
     
-    private func generateKey<T>(for type: T, key: String?) -> String {
+    private func generateServiceKey<T>(for type: T, key: String?) -> String {
         guard let name = key else {
             return "\(type)"
         }
