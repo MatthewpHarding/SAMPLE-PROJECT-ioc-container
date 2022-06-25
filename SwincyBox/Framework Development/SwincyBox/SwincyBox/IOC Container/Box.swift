@@ -134,11 +134,6 @@ public final class Box {
 
 extension Box {
     
-    private func logResolutionFailure<T>(forKey key: String, _ type: T) {
-        print("Swincy Framework")
-        print("Error: Couldn't resolve type '\(type)' for key '\(key)'")
-    }
-    
     private func logAlreadyRegisteredType<T>(forKey key: String, _ type: T) {
         print("Swincy Framework")
         print("Warning: Already registerd '\(type)' for key '\(key)'")
