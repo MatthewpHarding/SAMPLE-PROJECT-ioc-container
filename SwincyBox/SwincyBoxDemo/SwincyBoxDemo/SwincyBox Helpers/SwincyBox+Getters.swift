@@ -9,9 +9,7 @@ import Foundation
 import SwincyBox
 
 // MARK: - Child Boxes
-
 extension Box {
-    
     var bmwBox: Box? {
         get {
             return childBox(forKey: Keys.Box.bmwBox)
