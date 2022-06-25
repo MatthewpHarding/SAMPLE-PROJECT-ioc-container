@@ -10,6 +10,7 @@ import Foundation
 /// Resolver typealias has been used to aid the documentation and readability of the code by using standardised IOC Framework terminology
 public typealias Resolver = Box
 
+/// A box represents what's known as a container, using terminology often used when discussing the Inversion Of Control principle. Each box is used to register and store dependencies, which are known as services and are either stored or created by the box used during registration. A typical usage of SwincyBox would be accessing one box throughout the application lifecycle. However, multiple boxes can be created with an option to even chain them together as children boxes. Please note that when calling the resolve function on a box it becomes a first responder, cascading up through the parent chain until either a dependency is returned or the end of the chain is found and a fatalError() will be thrown.
 public final class Box {
     // MARK: - Properties
     private var services: [String : ServiceStorage] = [:]
