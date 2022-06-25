@@ -17,9 +17,7 @@ import XCTest
     At the very least, we can create some unit tests to understand the scenario and situation a little better.
  
  */
-
 // MARK: - Test Models With Circular Dependencies
-
 private class CrashTestDummy {
     var car: SafetyTestCar              // 💡 A strong reference is used here
     
@@ -37,11 +35,8 @@ private class SafetyTestCar {
 }
 
 // MARK: - Storage Type Permanent
-
 class WeakRefCircularDependencyTests_permanent: XCTestCase {
-
     // MARK: - Setup / Tear Down
-    
     let box = Box()
 
     override func setUpWithError() throws {
@@ -59,7 +54,6 @@ class WeakRefCircularDependencyTests_permanent: XCTestCase {
     }
     
     // MARK: - Unit Tests
-    
     func testDriverCircularDependency() {
         let driver = box.resolve() as CrashTestDummy
         XCTAssertNotNil(driver.car.driver, "Unexpected value of nil found in circular dependency property driver.car.driver")
@@ -69,15 +63,11 @@ class WeakRefCircularDependencyTests_permanent: XCTestCase {
         let car = box.resolve() as SafetyTestCar
         XCTAssertNotNil(car.driver?.car, "Unexpected value of nil found in circular dependency property car.driver.car")
     }
-    
 }
 
 // MARK: - Storage Type Transient
-
 class WeakCircularDependencyTests_transient: XCTestCase {
-
     // MARK: - Setup / Tear Down
-    
     let box = Box()
 
     override func setUpWithError() throws {
@@ -101,7 +91,6 @@ class WeakCircularDependencyTests_transient: XCTestCase {
     }
     
     // MARK: - Unit Tests
-    
     func testDriverCircularDependency() {
         let driver = box.resolve() as CrashTestDummy
         XCTAssertNotNil(driver.car.driver, "Unexpected value of nil found in circular dependency property driver.car.driver")
