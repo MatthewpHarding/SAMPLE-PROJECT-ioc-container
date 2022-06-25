@@ -8,16 +8,12 @@
 import Foundation
 
 // MARK: - Resolvable Showrooms
-
 extension App {
-        
-    // retrieve the child box from the Apps root box
     var bmwShowroom: Showroom {
         get {
             guard let bmwBox = box.bmwBox else {
                 fatalError("Dependency Failure: Unable to find child box 'BMW'")
             }
-            
             return bmwBox.resolve() as Showroom
         }
     }
@@ -27,7 +23,6 @@ extension App {
             guard let mercBox = box.mercedesBox else {
                 fatalError("Dependency Failure: Unable to find child box 'Mercedes'")
             }
-            
             return mercBox.resolve() as Showroom
         }
     }

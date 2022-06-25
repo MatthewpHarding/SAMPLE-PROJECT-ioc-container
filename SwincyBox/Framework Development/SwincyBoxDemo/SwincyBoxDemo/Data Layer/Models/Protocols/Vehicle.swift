@@ -12,8 +12,6 @@ protocol Vehicle {
     var model: String { get }
     var topSpeed: Int { get }
     var doors: Int { get }
-    
     var imageName: String { get }
-    
     var engine: Transmission { get }
 }

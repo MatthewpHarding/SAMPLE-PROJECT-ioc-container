@@ -8,17 +8,15 @@
 import Foundation
 
 
+// MARK: - Base Implementation
 struct Keys { }
 
-// MARK: - SwincyBox Keys
-
+// MARK: - Extension - SwincyBox Keys
 // 📦 It's always a good idea to keep your keys in one centralised location
-
 extension Keys {
     struct Box {
         static let bmwBox = "bmwBox"
         static let mercedesBox = "mercedesBox"
-        
         static let sportEngine = "sportEngine"
         static let sportsCar = "sportsCar"
         static let stableEngine = "stableEngine"

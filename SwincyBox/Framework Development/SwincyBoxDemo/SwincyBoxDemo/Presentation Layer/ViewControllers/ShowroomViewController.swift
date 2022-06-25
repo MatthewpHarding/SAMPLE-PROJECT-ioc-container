@@ -13,24 +13,18 @@ import SwincyBox
             Did you notice that there aren't any references to 'Car', only the protocol 'Vehicle'?
  */
 class ShowroomViewController: UIViewController {
-
     // MARK: - IBOutlets
-    
     @IBOutlet var vehicleMakeLabel: UILabel?
     @IBOutlet var vehicleModelLabel: UILabel?
     @IBOutlet var vehicleTopSpeedLabel: UILabel?
     @IBOutlet var vehicleDoorsLabel: UILabel?
     @IBOutlet var imageView: UIImageView?
-    
     // MARK: - Dependencies
-    
     var showroom: Showroom?
     
     // MARK: - Lifecycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         populateDefaultValues()
         setupNavigationBar()
     }
@@ -44,7 +38,6 @@ class ShowroomViewController: UIViewController {
     }
     
     // MARK: - IBActions
-    
     @IBAction private func familyVehicleButtonPressed(_ sender: UIButton) {
         selectFamilyVehicle()
     }
@@ -54,22 +47,15 @@ class ShowroomViewController: UIViewController {
     }
     
     // MARK: - Showroom
-    
     private func selectFamilyVehicle() {
-        guard let showroom = self.showroom else {
-            return
-        }
-        
+        guard let showroom = self.showroom else { return }
         // 📦 Use custom created getters to access dependencies conveniently from the main box
         showroom.shopWindowType = .familyDriving
         displayVehicleInsideShopWindow(showroom.shopWindowVehicle)
     }
     
     private func selectSportsVehicle() {
-        guard let showroom = self.showroom else {
-            return
-        }
-        
+        guard let showroom = self.showroom else { return }
         // 📦 Use custom created getters to access dependencies conveniently from the main box
         showroom.shopWindowType = .funMiddleAgedDriving
         displayVehicleInsideShopWindow(showroom.shopWindowVehicle)
@@ -77,7 +63,6 @@ class ShowroomViewController: UIViewController {
     
     private func displayVehicleInsideShopWindow(_ vehicle: Vehicle?) {
         guard let vehicle = vehicle else { return }
-        
         vehicleMakeLabel?.text = vehicle.make
         vehicleModelLabel?.text = vehicle.model
         vehicleTopSpeedLabel?.text = String(vehicle.topSpeed)
@@ -85,4 +70,3 @@ class ShowroomViewController: UIViewController {
         imageView?.image = UIImage(named: vehicle.imageName)
     }
 }
-
