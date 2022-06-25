@@ -16,7 +16,6 @@ class ClearTests: XCTestCase {
 
     override func setUpWithError() throws {
         box.register() { Engine(make: "BMW", model: "Sport 5000", gears: 7) as Transmission }
-        
         box.register() { r in
             return Car(make: "BMW", model: "i8 Roadster Donington Grey", topSpeed: 120, doors: 2, imageName: "BMW-Roadster", engine: r.resolve()) as Vehicle
         }
@@ -29,15 +28,11 @@ class ClearTests: XCTestCase {
     // MARK: - Unit Tests
     
     func testThatServicesAreRegistered() throws {
-        
         XCTAssertTrue(2 == box.registeredServiceCount, "Unexpected number of registered services")
     }
     
     func testClearingAllServices() throws {
-        
         box.clear()
-        
         XCTAssertTrue(0 == box.registeredServiceCount, "Unexpected number of registered services")
     }
-    
 }
