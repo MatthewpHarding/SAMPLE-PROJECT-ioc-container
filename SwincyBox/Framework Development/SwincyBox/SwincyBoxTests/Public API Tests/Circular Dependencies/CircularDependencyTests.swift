@@ -19,7 +19,6 @@ import XCTest
  */
 
 // MARK: - Test Models With Circular Dependencies
-
 private class CrashTestDummy {
     var car: SafetyTestCar          // 💡 Retain cycles will exist here, as both properties use strong references
  
@@ -39,9 +38,7 @@ private class SafetyTestCar {
 // MARK: - Storage Type Permanent
 
 class CircularDependencyTests_permanent: XCTestCase {
-
     // MARK: - Setup / Tear Down
-    
     let box = Box()
 
     override func setUpWithError() throws {
@@ -61,7 +58,6 @@ class CircularDependencyTests_permanent: XCTestCase {
     }
     
     // MARK: - Unit Tests
-    
     func testDriverCircularDependency() {
         let driver = box.resolve() as CrashTestDummy
         XCTAssertNotNil(driver.car.driver, "Unexpected value of nil found in circular dependency property driver.car.driver")
@@ -71,15 +67,11 @@ class CircularDependencyTests_permanent: XCTestCase {
         let car = box.resolve() as SafetyTestCar
         XCTAssertNotNil(car.driver?.car, "Unexpected value of nil found in circular dependency property car.driver.car")
     }
-    
 }
 
 // MARK: - Storage Type Transient
-
 class CircularDependencyTests_transient: XCTestCase {
-
     // MARK: - Setup / Tear Down
-    
     let box = Box()
 
     override func setUpWithError() throws {
@@ -105,7 +97,6 @@ class CircularDependencyTests_transient: XCTestCase {
     }
     
     // MARK: - Unit Tests
-    
     func testThatDriverCircularDependencyExists() {
         let driver = box.resolve() as CrashTestDummy
         XCTAssertNotNil(driver.car.driver, "Unexpected value of nil found in circular dependency property driver.car.driver")
