@@ -35,9 +35,9 @@ public final class Box {
     
     public func register<T>(_ type: T.Type = T.self, key: String? = nil, life: LifeType = .transient,_ factory: @escaping (() -> T)) {
         
-        let key = generateServiceKey(for: type, key: key)
-        if let _ = services[key] {
-            logWarning("Already registerd '\(type)' for key '\(key)'")
+        let serviceKey = generateServiceKey(for: type, key: key)
+        if let _ = services[serviceKey] {
+            logWarning("Already registerd '\(type)' for key '\(String(describing: key))'")
         }
         
         let storage: ServiceStorage = {
@@ -48,16 +48,16 @@ public final class Box {
                 return PermanentStore(factory())
             }
         }()
-        services[key] = storage
+        services[serviceKey] = storage
     }
     
     // MARK: - Register Dependecy (using a resolver)
     
     public func register<T>(_ type: T.Type = T.self, key: String? = nil, life: LifeType = .transient,_ factory: @escaping ((Box) -> T)) {
         
-        let key = generateServiceKey(for: type, key: key)
-        if let _ = services[key] {
-            logWarning("Already registerd '\(type)' for key '\(key)'")
+        let serviceKey = generateServiceKey(for: type, key: key)
+        if let _ = services[serviceKey] {
+            logWarning("Already registerd '\(type)' for key '\(String(describing: key))'")
         }
         
         let storage: ServiceStorage = {
@@ -66,7 +66,7 @@ public final class Box {
             case .permanent: return PermanentStore(factory(self))
             }
         }()
-        services[key] = storage
+        services[serviceKey] = storage
     }
     
     // MARK: - Resolve Dependency
@@ -100,8 +100,8 @@ public final class Box {
     // MARK: - Internally Resolve Dependency
     
     private func attempToResolve<T>(_ type: T.Type = T.self, key: String? = nil) -> T? {
-        let key = generateServiceKey(for: type, key: key)
-        guard let storage = services[key] else {
+        let serviceKey = generateServiceKey(for: type, key: key)
+        guard let storage = services[serviceKey] else {
             return nil
         }
         return storage.returnService(self) as? T
@@ -123,10 +123,10 @@ public final class Box {
     // MARK: - Services Key Generation
     
     private func generateServiceKey<T>(for type: T, key: String?) -> String {
-        guard let name = key else {
+        guard let key = key else {
             return "\(type)"
         }
-        return "\(type) - \(name)"
+        return "\(type) - \(key)"
     }
 }
 
