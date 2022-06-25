@@ -99,7 +99,7 @@ public final class Box {
         return resolveUsingParentIfNeeded(type, key: key)
     }
     
-    public func attempToResolve<T>(_ type: T.Type = T.self, key: String? = nil) -> T? {
+    private func attempToResolve<T>(_ type: T.Type = T.self, key: String? = nil) -> T? {
         let key = generateKey(for: type, key: key)
         guard let storage = services[key] else {
             return nil
