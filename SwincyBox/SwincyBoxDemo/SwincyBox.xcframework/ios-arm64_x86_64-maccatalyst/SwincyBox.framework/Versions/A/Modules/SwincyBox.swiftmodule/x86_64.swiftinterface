@@ -14,18 +14,18 @@ public enum LifeType {
     get
   }
 }
+public typealias Resolver = SwincyBox.Box
 final public class Box {
-  public init()
-  final public var numberOfRegisteredServices: Swift.Int {
+  final public var registeredServiceCount: Swift.Int {
     get
   }
+  public init()
   final public func clear()
-  final public func register<T>(_ type: T.Type = T.self, key: Swift.String? = nil, life: SwincyBox.LifeType = .transient, _ factory: @escaping (() -> T))
-  final public func register<T>(_ type: T.Type = T.self, key: Swift.String? = nil, life: SwincyBox.LifeType = .transient, _ factory: @escaping ((SwincyBox.Box) -> T))
+  final public func register<Service>(_ type: Service.Type = Service.self, key: Swift.String? = nil, life: SwincyBox.LifeType = .transient, _ factory: @escaping (() -> Service))
+  final public func register<Service>(_ type: Service.Type = Service.self, key: Swift.String? = nil, life: SwincyBox.LifeType = .transient, _ factory: @escaping ((SwincyBox.Resolver) -> Service))
+  final public func resolve<Service>(_ type: Service.Type = Service.self, key: Swift.String? = nil) -> Service
   final public func addChildBox(forKey key: Swift.String) -> SwincyBox.Box
   final public func childBox(forKey key: Swift.String) -> SwincyBox.Box?
-  final public func resolve<T>(_ type: T.Type = T.self, key: Swift.String? = nil) -> T
-  final public func attempToResolve<T>(_ type: T.Type = T.self, key: Swift.String? = nil) -> T?
   @objc deinit
 }
 extension SwincyBox.LifeType : Swift.Equatable {}

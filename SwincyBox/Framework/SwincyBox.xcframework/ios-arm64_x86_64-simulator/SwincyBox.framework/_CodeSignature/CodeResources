@@ -18,51 +18,51 @@
 		</data>
 		<key>Modules/SwincyBox.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		lM6NhMpiDFTKpszypaI0qGYRCC8=
+		NVcB7RD1RtbP5C8SXkLxrdCXRFM=
 		</data>
 		<key>Modules/SwincyBox.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		85/MJJC1T86vaWUNebTyHt0zwyY=
+		hQjeUqF6m2qXQ28QMbNzWoM1bVo=
 		</data>
 		<key>Modules/SwincyBox.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		o2Wt1BKQQhbBRdJwfFZ+uqnq3hU=
+		0oJw+Ud7VR3OPmiesYtvkHUFYvE=
 		</data>
 		<key>Modules/SwincyBox.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		lM6NhMpiDFTKpszypaI0qGYRCC8=
+		NVcB7RD1RtbP5C8SXkLxrdCXRFM=
 		</data>
 		<key>Modules/SwincyBox.swiftmodule/arm64.swiftinterface</key>
 		<data>
-		85/MJJC1T86vaWUNebTyHt0zwyY=
+		hQjeUqF6m2qXQ28QMbNzWoM1bVo=
 		</data>
 		<key>Modules/SwincyBox.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		o2Wt1BKQQhbBRdJwfFZ+uqnq3hU=
+		0oJw+Ud7VR3OPmiesYtvkHUFYvE=
 		</data>
 		<key>Modules/SwincyBox.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		u+x6ENLRmnnxwsr0mesKXxnGa+Q=
+		NNGKnPj/A1BWI8U1YSyZ0qdJPSc=
 		</data>
 		<key>Modules/SwincyBox.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		FOZUwiNKZ0XSVjT769R+JXqAWic=
+		4swokQaSQlzKRs0Y39TWUei556E=
 		</data>
 		<key>Modules/SwincyBox.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		8bd8AKJvjRj6zXHBcX+vIQuSO9w=
+		l8/CQhowPPSos3/iynTMAbNr4Nc=
 		</data>
 		<key>Modules/SwincyBox.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		u+x6ENLRmnnxwsr0mesKXxnGa+Q=
+		NNGKnPj/A1BWI8U1YSyZ0qdJPSc=
 		</data>
 		<key>Modules/SwincyBox.swiftmodule/x86_64.swiftinterface</key>
 		<data>
-		FOZUwiNKZ0XSVjT769R+JXqAWic=
+		4swokQaSQlzKRs0Y39TWUei556E=
 		</data>
 		<key>Modules/SwincyBox.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		8bd8AKJvjRj6zXHBcX+vIQuSO9w=
+		l8/CQhowPPSos3/iynTMAbNr4Nc=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -89,84 +89,84 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			7u+svKMobspP9pxDeXGL5999ESkna4D9sHdoj/yRWVg=
+			9ODjDlatYMKCwuZMWngHSDpy5LJEmgADRqVw9cvVDHo=
 			</data>
 		</dict>
 		<key>Modules/SwincyBox.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Sw/U3ysl26W17trFVYUbHSooaSOKsEVkF0on9LWz9+o=
+			M3bp+5Ho8vwiKJ3CAzNAknGVaMPG9Dsm+KhQYZ9EJek=
 			</data>
 		</dict>
 		<key>Modules/SwincyBox.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			USLM9a+9PBNFkF8f8VvG0+JP7PFIUcNvVLCbw5ZyBFs=
+			yHGNS91Xs3tcqUX14Rs2YE3LOw3iIdatqWhC2gVXH+c=
 			</data>
 		</dict>
 		<key>Modules/SwincyBox.swiftmodule/arm64.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			7u+svKMobspP9pxDeXGL5999ESkna4D9sHdoj/yRWVg=
+			9ODjDlatYMKCwuZMWngHSDpy5LJEmgADRqVw9cvVDHo=
 			</data>
 		</dict>
 		<key>Modules/SwincyBox.swiftmodule/arm64.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Sw/U3ysl26W17trFVYUbHSooaSOKsEVkF0on9LWz9+o=
+			M3bp+5Ho8vwiKJ3CAzNAknGVaMPG9Dsm+KhQYZ9EJek=
 			</data>
 		</dict>
 		<key>Modules/SwincyBox.swiftmodule/arm64.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			USLM9a+9PBNFkF8f8VvG0+JP7PFIUcNvVLCbw5ZyBFs=
+			yHGNS91Xs3tcqUX14Rs2YE3LOw3iIdatqWhC2gVXH+c=
 			</data>
 		</dict>
 		<key>Modules/SwincyBox.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			xTGhRWVEOeLxoDcq8OgW/34V5Wc1ZYMljLGC6I8v+tg=
+			Dm7iB3tGLoRdqsjWYWroW65GEkXPvW850PyWa5jLhzs=
 			</data>
 		</dict>
 		<key>Modules/SwincyBox.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			oP+P0vXEbROvVO+YWkNuN2QIC9YW+jK1uXz6cJqtD80=
+			xa6B58bgfCtqwGpDoNWZC9pDchTAhNVouFvmelIEpLM=
 			</data>
 		</dict>
 		<key>Modules/SwincyBox.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			bdZGqvnRNx99sv2uruXYION2aVh5pAnlg4VkKPOUlns=
+			nwIfAS7v0asEFxOvnQvXKFXBIJcJklOc/cxmtXb0Tqk=
 			</data>
 		</dict>
 		<key>Modules/SwincyBox.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			xTGhRWVEOeLxoDcq8OgW/34V5Wc1ZYMljLGC6I8v+tg=
+			Dm7iB3tGLoRdqsjWYWroW65GEkXPvW850PyWa5jLhzs=
 			</data>
 		</dict>
 		<key>Modules/SwincyBox.swiftmodule/x86_64.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			oP+P0vXEbROvVO+YWkNuN2QIC9YW+jK1uXz6cJqtD80=
+			xa6B58bgfCtqwGpDoNWZC9pDchTAhNVouFvmelIEpLM=
 			</data>
 		</dict>
 		<key>Modules/SwincyBox.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			bdZGqvnRNx99sv2uruXYION2aVh5pAnlg4VkKPOUlns=
+			nwIfAS7v0asEFxOvnQvXKFXBIJcJklOc/cxmtXb0Tqk=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

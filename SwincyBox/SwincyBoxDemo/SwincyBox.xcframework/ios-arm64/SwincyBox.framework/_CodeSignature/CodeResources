@@ -18,27 +18,27 @@
 		</data>
 		<key>Modules/SwincyBox.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
-		UYtiJhaOzOYsZKeSgkQkpb5m2TI=
+		bIoP8FJB7YJ+VhhVMFM2iIFCx7k=
 		</data>
 		<key>Modules/SwincyBox.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<data>
-		qGB+WmgKi+HEJH5FWO6bUPBB/qM=
+		XNVR4AD0fwufeAPgyzZgyhDGvIM=
 		</data>
 		<key>Modules/SwincyBox.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		f5s80oXffyIwQpDHIeer3GWQ+rA=
+		Wge6t16I7OFrAPMI6In4g0SO2oY=
 		</data>
 		<key>Modules/SwincyBox.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		UYtiJhaOzOYsZKeSgkQkpb5m2TI=
+		bIoP8FJB7YJ+VhhVMFM2iIFCx7k=
 		</data>
 		<key>Modules/SwincyBox.swiftmodule/arm64.swiftinterface</key>
 		<data>
-		qGB+WmgKi+HEJH5FWO6bUPBB/qM=
+		XNVR4AD0fwufeAPgyzZgyhDGvIM=
 		</data>
 		<key>Modules/SwincyBox.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		f5s80oXffyIwQpDHIeer3GWQ+rA=
+		Wge6t16I7OFrAPMI6In4g0SO2oY=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -65,42 +65,42 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Q/u4mEyhScsuBJiiAASUZHnqH5STGg4eCqAYk4C9Qkg=
+			UnpmpaI9rd92Fu7r2uhZgMkx3kS5rEDvwAirsBEoFoE=
 			</data>
 		</dict>
 		<key>Modules/SwincyBox.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			xyBYOdmChN+Aswj19/FgmZNOwr7UYCYWB6QIVFDy3rM=
+			YqDbdzuQSZ+6cyzjAx7+FTXC3fXnejFe+0K/wdZZExk=
 			</data>
 		</dict>
 		<key>Modules/SwincyBox.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Tg0orE63d+GyPyZKHdzR1vUStNQwsuCvxFt7uD5tsPY=
+			tOC32MlBl+Mo0Lod+5thGw/nfxlVKbD3g1Kmrtk3Hxc=
 			</data>
 		</dict>
 		<key>Modules/SwincyBox.swiftmodule/arm64.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Q/u4mEyhScsuBJiiAASUZHnqH5STGg4eCqAYk4C9Qkg=
+			UnpmpaI9rd92Fu7r2uhZgMkx3kS5rEDvwAirsBEoFoE=
 			</data>
 		</dict>
 		<key>Modules/SwincyBox.swiftmodule/arm64.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			xyBYOdmChN+Aswj19/FgmZNOwr7UYCYWB6QIVFDy3rM=
+			YqDbdzuQSZ+6cyzjAx7+FTXC3fXnejFe+0K/wdZZExk=
 			</data>
 		</dict>
 		<key>Modules/SwincyBox.swiftmodule/arm64.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Tg0orE63d+GyPyZKHdzR1vUStNQwsuCvxFt7uD5tsPY=
+			tOC32MlBl+Mo0Lod+5thGw/nfxlVKbD3g1Kmrtk3Hxc=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

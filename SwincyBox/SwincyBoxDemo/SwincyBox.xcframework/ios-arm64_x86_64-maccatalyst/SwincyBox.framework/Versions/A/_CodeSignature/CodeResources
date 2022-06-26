@@ -29,84 +29,84 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			aHpDIO1utd6s7gP0rveV1hr/NVx3WU673DP3K/9TDQw=
+			/XrCJtjCS6q6/Uts1L0ztizC7QeznibhJs1Z7W1YRx8=
 			</data>
 		</dict>
 		<key>Modules/SwincyBox.swiftmodule/arm64-apple-ios-macabi.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			VVak3kv7lzpMx7G+fEKA96pdnJ7IZUiM9oSWhpbTkFQ=
+			9bLY85b6kuKBiI/X5xKA4jfT3BrrSzbNAsvGTCdQQyU=
 			</data>
 		</dict>
 		<key>Modules/SwincyBox.swiftmodule/arm64-apple-ios-macabi.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			hAfsPLf//+XXzs9isDp1qbtx/7GO+6HppYeHvhLYuts=
+			d17ogMm3uWKsTMeiFXOhKzNUOjZ2rv/kHSxg30Ynmvw=
 			</data>
 		</dict>
 		<key>Modules/SwincyBox.swiftmodule/arm64.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			aHpDIO1utd6s7gP0rveV1hr/NVx3WU673DP3K/9TDQw=
+			/XrCJtjCS6q6/Uts1L0ztizC7QeznibhJs1Z7W1YRx8=
 			</data>
 		</dict>
 		<key>Modules/SwincyBox.swiftmodule/arm64.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			VVak3kv7lzpMx7G+fEKA96pdnJ7IZUiM9oSWhpbTkFQ=
+			9bLY85b6kuKBiI/X5xKA4jfT3BrrSzbNAsvGTCdQQyU=
 			</data>
 		</dict>
 		<key>Modules/SwincyBox.swiftmodule/arm64.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			hAfsPLf//+XXzs9isDp1qbtx/7GO+6HppYeHvhLYuts=
+			d17ogMm3uWKsTMeiFXOhKzNUOjZ2rv/kHSxg30Ynmvw=
 			</data>
 		</dict>
 		<key>Modules/SwincyBox.swiftmodule/x86_64-apple-ios-macabi.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			K9eY6O7krVXnuzHP6wg0rfEb5u6ZjBpPdBpVrcQ3kDo=
+			byKIfg0TAbO2UsKMoVW56qA5bQ/H4Cn05+7P0vq3OFk=
 			</data>
 		</dict>
 		<key>Modules/SwincyBox.swiftmodule/x86_64-apple-ios-macabi.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Yt1qbBA/XtOgD81S51ZRaH+1iofbJ3eVPos0te9NlJo=
+			Re9nDkiSobyD/9y4awdL2FAuwPyzZndTj26raV7j5Nc=
 			</data>
 		</dict>
 		<key>Modules/SwincyBox.swiftmodule/x86_64-apple-ios-macabi.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			LOgEN2VXp4+1O3WeFvqXskE/u7hJrXjZeTCiE52n5YA=
+			zoijfFr58E392JIGemvmMddLZXdNaIp7gi14Sdw1jnM=
 			</data>
 		</dict>
 		<key>Modules/SwincyBox.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			K9eY6O7krVXnuzHP6wg0rfEb5u6ZjBpPdBpVrcQ3kDo=
+			byKIfg0TAbO2UsKMoVW56qA5bQ/H4Cn05+7P0vq3OFk=
 			</data>
 		</dict>
 		<key>Modules/SwincyBox.swiftmodule/x86_64.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Yt1qbBA/XtOgD81S51ZRaH+1iofbJ3eVPos0te9NlJo=
+			Re9nDkiSobyD/9y4awdL2FAuwPyzZndTj26raV7j5Nc=
 			</data>
 		</dict>
 		<key>Modules/SwincyBox.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			LOgEN2VXp4+1O3WeFvqXskE/u7hJrXjZeTCiE52n5YA=
+			zoijfFr58E392JIGemvmMddLZXdNaIp7gi14Sdw1jnM=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
