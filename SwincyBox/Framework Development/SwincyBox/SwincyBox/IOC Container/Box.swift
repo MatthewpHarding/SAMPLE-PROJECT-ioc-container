@@ -27,7 +27,7 @@ public final class Box {
     public init () { }
     
     // MARK: - Clear Registered Services
-    /// Calling this function will remove all of the services registered with this current box
+    /// Calling this function will remove all of the services registered with this current box including all child boxes too.
     public func clear() {
         services.removeAll()
         childBoxes.forEach { $0.value.clear() }
