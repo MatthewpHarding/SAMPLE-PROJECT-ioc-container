@@ -1,48 +1,65 @@
 # 📦 ``SwincyBox``
 
 
-A Swift DI (Dependency Injection) Framework  for iOS.
-
-Also known as an IOC Container.
+A Swift dependency injection framework for iOS. Also known as an IOC Container.
 
 ## Overview
+This small yet powerful iOS framework operates within 201 lines of code applying principles from Swift Generics and light recursion for dependency resolution. A simple ``Box`` is all that is required to first register any dependencies known as ``Services``, followed by repeated calls to resolve.
 
-A framework to store dependency-creation logic in one centralised area quickly resolving dependencies, utilising dependency injection and writing cleaner code.
+This framework supports the Swift type `Any` supporting the registration and resolution of both `Classes` and `Structs`.  
 
-We create a ``Box``, register factory methods to create ``Classes`` or ``Structs`` (actually any type really) and call ``box.resolve()`` to access or create registered values called ``Services``.
 
-#### Supported Types
-``SwincyBox`` resolves Swift reference and value types of type ``Any``.
+## Features
 
-#### Example
-We will use alot of ``Car`` examples in this document as well as our sample project too.
-1. First, create a ``Box`` to contain our ``Services``
-2. Register a factory method (closure) to return the desired ``Type``
-3. Call ``box.resolve() as Type`` to retrieve desired ``Type``
+- Transient life cycle	(creating a new instance per call)
+- Permanent life cycle (singletons essentially)
+- Supports POP (Protocol Oriented Programming)
+- Multiple box support
+- Storyboard support (using @propertyWrapper)
+
+## Supported Types
+- Reference and value types of type ``Any``.
+
+## Installation
+1. Drag & drop the ``SwincyBox.xcframework`` file into any Xcode project.
+2. Import ``SwincyBox`` at the top of each file. For example...
+```swift
+import UIKit
+import SwincyBox // 👈 this imports SwincyBox
 ```
-// 1.
+## Framework File Generation
+1. Open the Terminal mac app.
+2. Change directory to ``Framework Development/SwincyBox``.
+3. Copy & paste the contents of the ``Building Framework File`` found within the framework Xcode project into the terminal. Press enter.
+4. Locate the newly created ``SwincyBox.xcframework`` file within the build folder ``Framework Development/SwincyBox/build``.
+
+## A Basic Example
+For a basic example let's consider using a new ``Box`` for a car creation factory. First, we'll need to declare a `Car` class and immediatey register a factory method to generate new instances with each call.
+```swift
+class Car { }
 let box = Box()
-// 2.
 box.register() { Car() }
-// 3.
+```
+Now we are ready to create our `Car` objects by simply telling our ``Box`` what `Type` we need to create.
+```swift
 let car = box.resolve() as Car
 ```
-We can also use ``keys`` to retrieve specific types registered with the same ``Type``.
-```
-// 2. register
+It's that simple!
+## An Example Using Keys
+
+We can also use ``keys`` to retrieve specific services registered with the same ``Type``.
+```swift
 box.register(key: "BMW") { Car() }
 box.register(key: "Mercedes") { Car() }
 
-// 3. resolve (i.e. retrieve)
 let bmw = box.resolve(key: "BMW") as Car
 let mercedes = box.resolve(key: "Mercedes") as Car
 ```
-## Topics
-### Dependency Injection
+## Dependency Injection Explained
 
 A typical example of dependency injection is when ``Class A`` also requires the usage of ``Class B``. To prevent ``Class A`` from creating ``Class B`` we can invert the control flow by simply passing in this already-instantiated type into the constructor of ``Class A``. Look at the following example:
 
-```
+```swift
 class B {}
 
 class A {
@@ -55,7 +72,7 @@ class A {
 ``Class A`` is creating an instance of ``Class B`` inside its constructor. This is considered bad practice as it tightly couples ``Class A`` to ``Class B``. Such tight coupling means that we cannot mock a test object and assign it to stored property ``B``.
 
 Now let's consider refactoring with dependency injection.
-```
+```swift
 class A {
     let b: B
     init (b: B) {
@@ -69,65 +86,34 @@ let a = A(b: b)
 ``Class A`` is also very easy to test as we can simply pass in the dependency of ``Class B``. In fact, we could easily create a mocked ``Class B`` and control its behaviour specifically for our tests.
 
 This is a widely accepted solution to handle dependencies and our ``SwincyBox framework`` compliments this design very well.
-```
+```swift
 let box = Box()
 box.register() { A(b: B()) }
 let instanceOfClassA = box.resolve() as A
 ```
 
 For more information watch this **Google Tech Talk** [https://www.youtube.com/watch?v=acjvKJiOvXw&t=13s](url)
-### SwincyBox - Basic Usage
 
-Let's consider using the ``SwincyBox framework`` to create ``Car`` objects.
-Firect, We register a closure that understands how to create such ``Car`` objects.
-```
-class Car { }
-```
-```
-let box = Box()
-box.register() { Car() }
-```
-After registration, we simply ask our ``Box`` 📦 to create ``Car`` objects for us.
-```
-let car = box.resolve() as Car
-```
-It's that simple!
-### Shared Box Singleton
+## A Detailed Example
 
-We don't include ``singletons`` inside the ``Swincy framework`` as it's not the responsibility of the framework. If we did, it might make life more difficult for client apps that use multiple ``Boxes``.
+Let's build a virtual ``Showroom`` of ``Cars``. The ``Car`` manufacturer will be **BMW** and each ``Car`` will contain one **Volkswagen (VW)** ``Engine``. We'll keep our ``Showroom`` simple and only stock two ``Vehicles``, a sports car and a more-reliable family car.
 
-Instead, we include a helpful ``SharedBox.swift`` file for client apps to add to their Xcode project. Then it's also editable too.
-```
-// A basic and very simple shared box!
-struct App {
-    static let box = Box()
-}
-```
-To access simply write:
-```
-let box = App.box   // Wow. That was easy!
-```
-### A More Detailed Example
-#### A Virtual Car Showroom 🚗
-
-Let's build a virtual ``Showroom`` of ``Cars``. The ``Car`` manufacturer will be **BMW** and each ``Car`` will contain 1 **Volkswagen (VW)** ``Engine``. We'll keep our ``Showroom`` simple and only stock 2 ``Vehicles``, a ``sportsCar`` and a more-reliable ``familyCar``.
-
-As engineers, we'll build a general ``Showroom class`` storing 2 ``Car`` properties. 1 ``Car`` will be selected and displayed inside the shop window.
-```
+As engineers, we'll build a general ``Showroom`` class storing two ``Car`` properties. One ``Car`` will be selected and displayed inside the shop window.
+```swift
 protocol Vehicle { } 	
 class Car: Vehicle { }
 
 class BMWX3: Car { }
 class BMWRoadster: Car { }
 
-box.register(key: "familyCar") { BMWX3() as Car } // notice the downcast
+box.register(key: "familyCar") { BMWX3() as Car } 
 box.register(key: "sportsCar") { BMWRoadster() as Car }
         
 let familyCar = box.resolve(key: "familyCar") as Car
 let sportsCar = box.resolve(key: "sportsCar") as Car
 ```
 Our ``Box`` 📦 can now provide ``Car`` objects. What's amazing though is that we registered a ``BMWX3`` ``Car`` (with a key) to be used for the ``Car`` type. This allows us to create a ``Showroom`` of ``Car`` types that can simply be passed in (as parameters) without any knowledge of the ``subclass`` type.
-```
+```swift
 class Showroom {
     
     let familyCar: Car
@@ -140,71 +126,22 @@ class Showroom {
 }
 ```
 
-```
+```swift
 let showroom = Showroom(box.resolve(key: "familyCar"), box.resolve(key: "sportsCar"))
 ```
 Our ``Showroom`` utilises DI (Dependency Injection), it's not ``tightly coupled`` to the manufacturer and thus provides control over testing as we control each internally-used dependency.
 
 
 Also, in the future, we can ``register`` different ``Car`` objects, such as if the manufacturer changes or we rotate the stock for later models.
-```
+```swift
 box.register(key: "sportsCar") { MercedesAMG() as Car } // Now it's Mercedes!
 ```
 If the manufacturer changes our code remains the same! 👏
 
-### Sample Project
-The ``Showroom`` example is also used within our sample project. The ``SwincyBoxDemo.xcodeproj`` is a ``UIKit`` project and has not been created as a showcase of coding skill, good architecture or  beautiful UI. It is simply a quick prototype and demonstration of the ``SwincyBox framework`` in action. 
-
-### SwincyBox In Action
-
-Below are a few scenarios and examples of how we may use ``SwincyBox``. 
-
-#### Creating Your Box 📦
-First, we'll need to create our ``Box`` (also known as an ``IOC Container``) which stores the collection of ``Services``. Each ``Service`` is either stored as a created ``instance`` or a factory method which can be called multiple times to create a new ``instance``. We simply use the ``LifeTime`` enum for this purpose. ``.transient`` is the default value and creates a new instance on demand. ``.permanent`` creates an ``instance`` immediately and simply stores it inside the ``Box``.
-```
-let box = Box()
-```
-We may want to store our box within a shared location such as the ``AppDelegate class`` or even create a simple ``Singleton struct`` for easily access. Such as the following example:
-```
-struct App {
-    static let box = Box()
-}
-
-// then to access
-let sharedBox = App.box
-```
-
-#### 1. A Basic Factory
-The code below sets a ``.transient`` factory method inside ``SwincyBox`` creating a new ``instance`` of ``Car`` each time it's called.
-
-```
-box.register() { Car() }
-let car = box.resolve() as Car
-```
-#### 2. Dependency Resolution Factory
-In this example, ``Car`` has a dependency on ``Engine``. The factory method creates a new instance of ``Car`` using constructor dependency injection to insert a new instance of ``Engine``.
-```
-class Engine { }
-
-class Car {
-    
-    let engine: Engine
-    
-    init(engine: Engine) {        
-        self.engine = engine
-    }
-}
-```
-```
-box.register() { Car(engine: Engine()) }
-let car = box.resolve() as Car
-```
-#### 3. Dependency Resolution With Protocols
+## POP (Protocol Oriented Programming)
 In this example, we'll register ``concrete types`` against a ``protocol``.
 Each time we resolve the ``Vehicle`` ``protocol`` we'll recieve a ``Car`` object from ``SwincyBox``. However, in our code we now have the flexibility of refering to the ``Vehicle`` ``protocol`` without any understanding of the s``concrete types`` used.
-
-This layer of abstraction can be very useful in solid application architecture. 
-```
+```swift
 protocol Transmission {}
 protocol Vehicle {
     var engine: Transmission { get }
@@ -220,46 +157,11 @@ class Car: Vehicle {
     }
 }
 ```
-```
+```swift
 box.register() { Car(engine: Engine()) as Vehicle }
 let vehicle = box.resolve() as Vehicle
 ```
-#### 4. Resolving Dependencies
-Using the same ``class`` and ``protocol`` declarations from the previous example we can resolve the ``Transmission`` dependency on our ``Car class`` simply can by utilising ``Swift Generics`` and ``Type Inference``.
-
-We access the ``resolver`` parameter passed into the factory method and simply ask it to resolve the inferred type.
-```
-protocol Transmission {}
-protocol Vehicle {
-    var engine: Transmission { get }
-}
-
-class Engine: Transmission { }
-class Car: Vehicle {
-    
-    let engine: Transmission
-    
-    init(engine: Transmission) {        
-        self.engine = engine
-    }
-}
-```
-```
-box.register() { Engine()) as Transmission }
-box.register() { r in Car(engine: r.resolve()) as Vehicle }
-let vehicle = box.resolve() as Vehicle
-```
-#### 5. Using Keys
-Providing ``keys`` is a great way to ``register`` and ``resolve`` individual instances of a ``Type``.
-```
-box.register() { Engine()) as Transmission }
-box.register(key: "sportsCar") { r in Car(engine: r.resolve()) as Car }
-box.register(key: "familyCar") { r in Car(engine: r.resolve()) as Car }
-
-let sportsCar = box.resolve(key: "sportsCar") as Car
-let familyCar = box.resolve(key: "familyCar") as Car
-```
-### Circular Dependencies
+## Circular Dependencies
 #### ⚠️ WARNING - Avoid Circular Dependencies In Your Architecture
 Circular dependencies can cause retain cycles and are usually caused by poor architectural descisions. 😬
 
@@ -267,7 +169,7 @@ Let's consider a scenario where two ``classes`` reference each other. In the exa
 
 How would ``SwincyBox`` handle this scenario?
 
-```
+```swift
 class CrashTestDummy {
     var car: SafetyTestCar
     
@@ -288,7 +190,7 @@ First, let's decide to use a ``.permanent`` ``LifeType`` inside our ``Box``. Thi
 
 But we immediately run into a problem. 
 
-```
+```swift
 box.register(CrashTestDummy.self, life: .permanent) { r in
     let crashTestDummy = CrashTestDummy(car: SafetyTestCar(driver: ??? ))
 
@@ -301,7 +203,7 @@ How do we inject our ``instance`` of ``CrashTestDummy`` into ``SafetyTestCar`` w
 Circular dependencies have this problem (amongst many). The solution is of course that we must first complete the instantiation of ``CrashTestDummy`` and then connect any references to it afterwards.
 
 We can use a ``mutable property`` to accomplish this like so:
-```
+```swift
 class CrashTestDummy {
     var car: SafetyTestCar
     
@@ -325,7 +227,7 @@ Yes, both ``classes`` use a ``strong reference`` to each other which creates a `
 😭 
 
 Our solution now becomes:
-```
+```swift
 class CrashTestDummy {
     var car: SafetyTestCar
     
@@ -339,7 +241,7 @@ class SafetyTestCar {
 }
 ```
 With our registration logic becoming:
-```
+```swift
 box.register(life: .permanent) { SafetyTestCar() }
 
 box.register(CrashTestDummy.self, life: .permanent) { r in
@@ -350,12 +252,12 @@ box.register(CrashTestDummy.self, life: .permanent) { r in
     return dummy
 }
 ```
-### Transient Circular Dependencies
+## Transient Circular Dependencies
 In the previous section we explained ``.permanent`` circular dependencies with a supported solution. However, if we adopt the same approach with ``.transient`` ``LifeType`` ``services`` the ``weak`` reference quickly is set to ``nil`` by the ARC memory management system.  Why is that?
 
 Let's consider the following registration code for our ``Box`` using a ``.transient``  ``LifeType``. The concept is essentially the same as the ``.permanent`` registration except each ``instance`` can't be connected outside the ``factory closure`` which creates new ``instances`` per call to ``resolve``. Therefore we must register the same logic for each ``Type``.
 
-```
+```swift
 box.register(CrashTestDummy.self, life: . transient) {
     let car = SafetyTestCar()
     let dummy = CrashTestDummy(car: car)
@@ -364,7 +266,7 @@ box.register(CrashTestDummy.self, life: . transient) {
     return dummy
 }
 ```
-```
+```swift
 box.register(SafetyTestCar.self, life: .transient) {
     let car = SafetyTestCar()
     let dummy = CrashTestDummy(car: car)
@@ -374,12 +276,12 @@ box.register(SafetyTestCar.self, life: .transient) {
 }
 ```
 Resolving ``CrashTestDummy`` returns a complete circular reference.
-```
+```swift
 let dummy = box.resolve() as CrashTestDummy
 let circularRef = dummy.car.dummy // ✅
 ```
 Resolving ``SafetyTestCar`` results in a ``nil`` value for the ``dummy`` property.
-```
+```swift
 let car = box.resolve() as SafetyTestCar
 let circularRef = car.dummy?.car // ❌ is nil
 ```
@@ -387,12 +289,26 @@ let circularRef = car.dummy?.car // ❌ is nil
 If we ``resolve`` ``CrashTestDummy`` no ``strong`` reference is held to the instance of ``SafetyTestCar``. The ``Box`` doesn't increment the ``retain count`` and neither does the ``weak`` reference stored within ``SafetyTestCar``. There is in fact, not even one ``strong`` reference to ``CrashTestDummy`` and the created instance is ``deallocated`` immediately after being returned from the ``resolve`` function.
 
 Essentially the solution here (if any) is to understand our architecture and make good architectural descisions!
-### Storyboard ViewController Properties
+## Shared Box Singleton
+
+We don't include ``singletons`` inside the ``SwincyBox`` framework as it's not the responsibility of the framework. If we did, it might make life more difficult for client apps that use multiple ``Boxes``.
+
+If you wanted to access a single instance of your box then consider creating a simple singleton similar to the following example:
+```swift
+struct App {
+    static let box = Box()
+}
+```
+To access simply write:
+```swift
+let box = App.box   
+```
+## Supporting Storyboards
 
 ``Storyboards`` can create ``UIViewControllers`` automatically which can make dependency injection somewhat difficult. 
 
-@propertyWrapper can help! ``SwincyBox`` provides a helper file ``AutoBoxed.swift`` located inside our sample project to easily create property wrappers for automatic dependency injection for stored properties.
-```
+Swift has a feature that can help - @propertyWrappers. Create a new file to your Xcode project and paste in the following code.
+```swift
 @propertyWrapper
 public struct AutoBoxed<T> {
     
@@ -415,10 +331,9 @@ public struct AutoBoxed<T> {
     }
 }
 ```
-These helper files add more flexibility to ``SwincyBox`` as well as your Xcode project while keeping us (the developers) in control! If we decide to access a shared ``singleton`` and prefer writing simple wrapped properties compared to injecting dependencies through a constructor then this could be a good solution.
+Then you can simply prefix your properties with ``@AutoBoxed``. The service should be automatically resolved using the box supplied within your implementation of ``AutoBoxed``.   
 
-Below is an example of a basic implementation using an ``AutoBoxed`` property wrapper inside a ``UIViewController`` named ``ShowroomViewController``.
-```
+```swift
 class ShowroomViewController: UIViewController {
 
     @AutoBoxed var showroom: Showroom
@@ -426,40 +341,10 @@ class ShowroomViewController: UIViewController {
 ...
 ```
 
+## Thank You 😃
 
-
-
-### Thank You 😃
-
-Thank you to everyone who was a part of this project. This test. And of course, this opportunity.
-``SwincyBox`` was a pleasure to create and very enjoyable too.
-A great idea by those who suggested it.
-# 📦 ``SwincyBox``
-### 📚 The Files
-⬇ Download the **MattHardingIOCFramework.zip** file.
-
-It contains 3 folders:
-```
-📘 Development
-📙 Framework
-📔 SampleProject
-```
-
-### 📘 Development
-This folder contains a ``IOCFramework.xcworkspace`` file containing both the ``SwincyBox Framework`` and a ``sample app`` dynamically connected to view immediate changes to the framework.
-Please open the ``workspace file`` by itself and not the individual project files to view and edit the code. 
-### 📙 Framework
-This folder contains a ``SwincyBox.xcframework`` file for distribution. It can easily be added to any project simply by dragging and dropping it to the ``Xcode`` project navigator pane.
-After adding it to your project, simply import ``SwincyBox`` to the top of any file to start using it. Like so...
-```
-import UIKit
-import SwincyBox // 👈 this imports SwincyBox
-```
-
-### 📔 Sample Project
-This folder includes a sample project showcasing the easy use of ``SwincyBox``. Simply open the ``SwincyBoxDemo.xcodeproj`` file in ``Xcode`` and run it on the ``Simulator``. 
-
-It may be interesting to look at the ``SwincyBox Helpers`` folder at the top of the project navigator pane. You will find a ``config`` file which can (if you like) be used to register dependencies alongside a property wrapper file to aid automatic dependency injection of ``UIViewController`` stored properties.
+Thank you to everyone who was a part of this project.
+``SwincyBox`` was a pleasure to create and a great idea by those who suggested it.
 
 ### Project Author
 **Matthew Harding**
