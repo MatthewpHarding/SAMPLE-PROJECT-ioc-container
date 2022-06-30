@@ -140,7 +140,7 @@ If the manufacturer changes our code remains the same! 👏
 
 ## POP (Protocol Oriented Programming)
 In this example, we'll register ``concrete types`` against a ``protocol``.
-Each time we resolve the ``Vehicle`` ``protocol`` we'll recieve a ``Car`` object from ``SwincyBox``. However, in our code we now have the flexibility of refering to the ``Vehicle`` ``protocol`` without any understanding of the s``concrete types`` used.
+Each time we resolve the ``Vehicle`` ``protocol`` we'll recieve a ``Car`` object from ``SwincyBox``. However, in our code we now have the flexibility of refering to the ``Vehicle`` ``protocol`` without any understanding of the ``concrete types`` used.
 ```swift
 protocol Transmission {}
 protocol Vehicle {
