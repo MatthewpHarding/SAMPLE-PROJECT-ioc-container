@@ -11,12 +11,10 @@ import UIKit
 // 📦 You can auto inject dependencies into UIViewControllers simply by using this propertyWrapper.
 //    Syntax example: @AutoBoxed var showroom: Showroom?
 @propertyWrapper
-public struct AutoBoxed<T> {
+struct AutoBoxed<T> {
     private var service: T?
     
-    public init() {}
-    
-    public var wrappedValue: T {
+    var wrappedValue: T {
         mutating get {
             if service == nil {
                 service = App.shared.box.resolve(T.self)
@@ -26,7 +24,7 @@ public struct AutoBoxed<T> {
         set { service = newValue }
     }
     
-    public var projectedValue: T {
+    var projectedValue: T {
         return service!
     }
 }
