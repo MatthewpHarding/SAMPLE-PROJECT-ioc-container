@@ -61,8 +61,7 @@ class ShowroomViewController: UIViewController {
         displayVehicleInsideShopWindow(showroom.shopWindowVehicle)
     }
     
-    private func displayVehicleInsideShopWindow(_ vehicle: Vehicle?) {
-        guard let vehicle = vehicle else { return }
+    private func displayVehicleInsideShopWindow(_ vehicle: Vehicle) {
         vehicleMakeLabel?.text = vehicle.make
         vehicleModelLabel?.text = vehicle.model
         vehicleTopSpeedLabel?.text = String(vehicle.topSpeed)
