@@ -23,8 +23,4 @@ struct AutoBoxed<T> {
         }
         set { service = newValue }
     }
-    
-    var projectedValue: T {
-        return service!
-    }
 }
