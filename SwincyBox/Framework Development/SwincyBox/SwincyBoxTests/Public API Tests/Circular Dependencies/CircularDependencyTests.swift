@@ -67,6 +67,15 @@ class CircularDependencyTests_permanent: XCTestCase {
         let car = box.resolve() as SafetyTestCar
         XCTAssertNotNil(car.driver?.car, "Unexpected value of nil found in circular dependency property car.driver.car")
     }
+    
+    func testThatInstancesAreTheSame() {
+        let car = box.resolve() as SafetyTestCar
+        let driver = box.resolve() as CrashTestDummy
+        XCTAssertTrue(car.driver === driver, "Unexpectedly found different instances for circuluar references")
+        XCTAssertTrue(driver.car === car, "Unexpectedly found different instances for circuluar references")
+        XCTAssertTrue(car.driver?.car === car, "Unexpectedly found different instances for circuluar references")
+        XCTAssertTrue(driver.car.driver === driver, "Unexpectedly found different instances for circuluar references")
+    }
 }
 
 // MARK: - Storage Type Transient
