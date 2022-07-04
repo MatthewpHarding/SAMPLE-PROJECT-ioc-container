@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0C0B7FF428660CAC008A0B6F /* UIColor+HexValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B7FF328660CAC008A0B6F /* UIColor+HexValue.swift */; };
-		0C0B801A2866322A008A0B6F /* SwincyBox.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C0B80192866322A008A0B6F /* SwincyBox.xcframework */; };
 		0C360F73285D1565009E3AFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C360F72285D1565009E3AFC /* AppDelegate.swift */; };
 		0C360F75285D1565009E3AFC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C360F74285D1565009E3AFC /* SceneDelegate.swift */; };
 		0C360F77285D1565009E3AFC /* ShowroomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C360F76285D1565009E3AFC /* ShowroomViewController.swift */; };
@@ -30,6 +29,8 @@
 		0C93961B2865A72F003BC829 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C93961A2865A72F003BC829 /* Keys.swift */; };
 		0C93961E2865BB2E003BC829 /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C93961D2865BB2E003BC829 /* Engine.swift */; };
 		0C93962D2865C2E4003BC829 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C93962C2865C2E4003BC829 /* App.swift */; };
+		0CE11EB12872D354003587A3 /* SwincyBox.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C0B80192866322A008A0B6F /* SwincyBox.xcframework */; };
+		0CE11EB22872D354003587A3 /* SwincyBox.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C0B80192866322A008A0B6F /* SwincyBox.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				0CE11EB22872D354003587A3 /* SwincyBox.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -89,7 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C0B801A2866322A008A0B6F /* SwincyBox.xcframework in Frameworks */,
+				0CE11EB12872D354003587A3 /* SwincyBox.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
