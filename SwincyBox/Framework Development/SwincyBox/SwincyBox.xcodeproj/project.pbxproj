@@ -38,6 +38,8 @@
 		0CE73E4D2875A5FE00ED0116 /* OnIntialisedTests_permanent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE73E4B2875A5FE00ED0116 /* OnIntialisedTests_permanent.swift */; };
 		0CE73E4E2875A5FE00ED0116 /* OnIntialisedTests_transient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE73E4C2875A5FE00ED0116 /* OnIntialisedTests_transient.swift */; };
 		0CE73E502875AE7400ED0116 /* ResolvingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE73E4F2875AE7400ED0116 /* ResolvingError.swift */; };
+		0CE73E522875B1D200ED0116 /* PermanentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE73E512875B1D200ED0116 /* PermanentStore.swift */; };
+		0CE73E542875B1DF00ED0116 /* TransientStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE73E532875B1DF00ED0116 /* TransientStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +86,8 @@
 		0CE73E4B2875A5FE00ED0116 /* OnIntialisedTests_permanent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnIntialisedTests_permanent.swift; sourceTree = "<group>"; };
 		0CE73E4C2875A5FE00ED0116 /* OnIntialisedTests_transient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnIntialisedTests_transient.swift; sourceTree = "<group>"; };
 		0CE73E4F2875AE7400ED0116 /* ResolvingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolvingError.swift; sourceTree = "<group>"; };
+		0CE73E512875B1D200ED0116 /* PermanentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermanentStore.swift; sourceTree = "<group>"; };
+		0CE73E532875B1DF00ED0116 /* TransientStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransientStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +139,8 @@
 				0CE73E4F2875AE7400ED0116 /* ResolvingError.swift */,
 				0C360FD5285F8544009E3AFC /* LifeType.swift */,
 				0C360F2B285CC2C9009E3AFC /* ServiceStorage.swift */,
+				0CE73E512875B1D200ED0116 /* PermanentStore.swift */,
+				0CE73E532875B1DF00ED0116 /* TransientStore.swift */,
 			);
 			path = "IOC Container";
 			sourceTree = "<group>";
@@ -377,6 +383,8 @@
 				0C94576A285A34E5008CA04F /* SwincyBox.docc in Sources */,
 				0C360F2C285CC2C9009E3AFC /* ServiceStorage.swift in Sources */,
 				0C945781285A38B7008CA04F /* Box.swift in Sources */,
+				0CE73E522875B1D200ED0116 /* PermanentStore.swift in Sources */,
+				0CE73E542875B1DF00ED0116 /* TransientStore.swift in Sources */,
 				0CE73E502875AE7400ED0116 /* ResolvingError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
