@@ -13,6 +13,9 @@ protocol ServiceStoring {
     /// Interface for retrieving an instance of the service stored
     /// - Returns: An instance of the service stored
     func service(_ resolver: Resolver) -> Any
+    
+    /// An setter to store the callback method called immediately after instantiation of each service created.
+    func onInitialised(_ closure: @escaping ((Box, Any) -> Void))
 }
 
 // MARK: - Permanent
@@ -22,6 +25,9 @@ final class PermanentStore<Service>: ServiceStoring {
     private var service: Service?
     /// The factory method used to create an instance of the service
     private let factory: ((Resolver) -> Service)
+    
+    /// The stored higher-order property called immediately after creation of the service
+    private var closureOnInitialise: ((Box, Any) -> Void)?
     
     /// Initialiser for a permanent store of a registered service.
     /// - Parameter factory: The factory method used to create an instance of the service.
@@ -38,7 +44,13 @@ final class PermanentStore<Service>: ServiceStoring {
         }
         let newService = factory(resolver)
         self.service = newService
+        closureOnInitialise?(resolver, newService)
         return newService
+    }
+    
+    /// call this function to set a closure called immediately after creation of the service.
+    func onInitialised(_ closure: @escaping ((Box, Any) -> Void)) {
+        closureOnInitialise = closure
     }
 }
 
@@ -47,6 +59,8 @@ final class PermanentStore<Service>: ServiceStoring {
 final class TransientStore<Service>: ServiceStoring {
     /// The factory method used to create an instance of the service each time it is requested.
     private let factory: ((Resolver) -> Service)
+    /// The stored higher-order property called immediately after creation of each service.
+    private var closureOnInitialise: ((Box, Any) -> Void)?
     
     /// Initialiser for a transient store of a registered service.
     /// - Parameter factory: The factory method used to create an instance of the service each time it is requested.
@@ -58,6 +72,13 @@ final class TransientStore<Service>: ServiceStoring {
     /// - Parameter resolver: The resolver object to be used when resolving dependencies.
     /// - Returns: A newly created service with each function call.
     func service(_ resolver: Resolver) -> Any {
-        return factory(resolver)
+        let newService = factory(resolver)
+        closureOnInitialise?(resolver, newService)
+        return newService
+    }
+    
+    /// call this function to set a closure called immediately after the creation of each service.
+    func onInitialised(_ closure: @escaping ((Box, Any) -> Void)) {
+        closureOnInitialise = closure
     }
 }
