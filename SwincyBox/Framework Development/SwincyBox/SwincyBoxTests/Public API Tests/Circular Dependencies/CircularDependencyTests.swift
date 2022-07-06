@@ -44,11 +44,13 @@ class CircularDependencyTests_permanent: XCTestCase {
     override func setUpWithError() throws {
         // NOTE: We MUST understand that we have created a retain cycle in ARC by using strong circular references
         //       Weak references would simply be deallocated immediately and so exists a memory issue
-        box.register(life: .permanent) { SafetyTestCar(driver: nil) }
+        box.register(SafetyTestCar.self, life: .permanent) { r in
+            let driver = r.resolve() as CrashTestDummy
+            return driver.car
+        }
         box.register(CrashTestDummy.self, life: .permanent) { resolver in
-            let driver = CrashTestDummy(car: resolver.resolve())
-            let car = driver.car
-            car.driver = driver
+            let driver = CrashTestDummy(car: SafetyTestCar(driver: nil))
+            driver.car.driver = driver
             return driver
         }
     }

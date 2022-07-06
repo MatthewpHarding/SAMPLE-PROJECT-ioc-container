@@ -36,13 +36,13 @@ public final class Box {
     // MARK: - Register Dependecy (without a resolver)
     /// Call register to add a closure which creates a specific type known as a service. The factory method that creates it will be stored for use each time resolve() is called. Specifying the LifeType will dictate if the returned instance is kept and stored for the lifetime of the box. A transient LifeType will create a new instance with each call to resolve(). A permanent type will store the first created instance returned with each subsequent call.
     public func register<Service>(_ type: Service.Type = Service.self, key: String? = nil, life: LifeType = .transient, _ factory: @escaping (() -> Service)) {
-        registerServiceStore(wrapServiceFactory(factory, life: life), type, key)
+        registerServiceStore(wrapServiceFactory(forLife: life, factory), type, key)
     }
     
     // MARK: - Register Dependecy (using a resolver)
     /// Call register to add a closure which creates a specific type known as a service. The factory method that creates it will be stored for use each time resolve() is called. Specifying the LifeType will dictate if the returned instance is kept and stored for the lifetime of the box. A transient LifeType will create a new instance with each call to resolve(). A permanent type will store the first created instance returned with each subsequent call. This particular overload of the register function accepts a resolver type as an argument to the factory method which can be used to resolve any dependencies on the type registered.
     public func register<Service>(_ type: Service.Type = Service.self, key: String? = nil, life: LifeType = .transient, _ factory: @escaping ((Resolver) -> Service)) {
-        registerServiceStore(wrapServiceFactory(factory, life: life), type, key)
+        registerServiceStore(wrapServiceFactory(forLife: life, factory), type, key)
     }
     
     /// Call this function to store the wrapped service within the dictionary of registered services.
@@ -114,19 +114,18 @@ public final class Box {
     
     /// A function to encapsulate a factory method used to generate some instance of a service. This method will return a different type of wrapper for each different life cycle supported by SwincyBox. The passed in factory method accepts a resolver object as an argument, which should be used to resolve any dependencies before returning the service itself.
     /// - Returns: An type adhering to the service storage protocol which can then be asked to return the service it encapsulates.
-    private func wrapServiceFactory<Service>(_ factory: @escaping ((Resolver) -> Service), life: LifeType) -> ServiceStorage {
+    private func wrapServiceFactory<Service>(forLife life: LifeType, _ factory: @escaping ((Resolver) -> Service)) -> ServiceStorage {
         switch life {
-        case .transient: return TransientStoreWithResolver(factory)
-        case .permanent: return PermanentStore(factory(self))
+        case .transient: return TransientStore(factory)
+        case .permanent: return PermanentStore(factory)
         }
     }
     
     /// A function to encapsulate a factory method used to generate some instance of a service. This method will return a different type of wrapper for each different life cycle supported by SwincyBox. The passed in factory method accepts no arguments and simply returns an instance of the service.
     /// - Returns: An type adhering to the service storage protocol which can then be asked to return the service it encapsulates.
-    private func wrapServiceFactory<Service>(_ factory: @escaping (() -> Service), life: LifeType) -> ServiceStorage {
-        switch life {
-        case .transient: return TransientStore(factory)
-        case .permanent: return PermanentStore(factory())
+    private func wrapServiceFactory<Service>(forLife life: LifeType, _ factory: @escaping (() -> Service)) -> ServiceStorage {
+        return wrapServiceFactory(forLife: life) { _ in
+            factory()
         }
     }
 }
