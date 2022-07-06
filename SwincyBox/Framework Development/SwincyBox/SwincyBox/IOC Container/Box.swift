@@ -14,7 +14,7 @@ public typealias Resolver = Box
 public final class Box {
     // MARK: - Properties
     /// A store of each registered service, or rather the wrapper type that encapsulates it.
-    private var services: [String : ServiceStorage] = [:]
+    private var services: [String : ServiceStoring] = [:]
     /// A weak referenced property linking to the box which created it or nil if it wasn't created by a parent. Parent boxes are used to recursively search upwards to resolve a service.
     private weak var parentBox: Box? = nil
     /// An array of all child boxes created by calling the addChildBox() function.
@@ -46,7 +46,7 @@ public final class Box {
     }
     
     /// Call this function to store the wrapped service within the dictionary of registered services.
-    private func registerServiceStore<Service>(_ serviceStore: ServiceStorage, _ type: Service.Type, _ key: String?) {
+    private func registerServiceStore<Service>(_ serviceStore: ServiceStoring, _ type: Service.Type, _ key: String?) {
         let serviceKey = serviceKey(for: type, key: key)
         if let _ = services[serviceKey] {
             logWarning("Already registerd '\(type)' for key '\(String(describing: key))'")
@@ -114,7 +114,7 @@ public final class Box {
     
     /// A function to encapsulate a factory method used to generate some instance of a service. This method will return a different type of wrapper for each different life cycle supported by SwincyBox. The passed in factory method accepts a resolver object as an argument, which should be used to resolve any dependencies before returning the service itself.
     /// - Returns: An type adhering to the service storage protocol which can then be asked to return the service it encapsulates.
-    private func wrapServiceFactory<Service>(forLife life: LifeType, _ factory: @escaping ((Resolver) -> Service)) -> ServiceStorage {
+    private func wrapServiceFactory<Service>(forLife life: LifeType, _ factory: @escaping ((Resolver) -> Service)) -> ServiceStoring {
         switch life {
         case .transient: return TransientStore(factory)
         case .permanent: return PermanentStore(factory)
@@ -123,7 +123,7 @@ public final class Box {
     
     /// A function to encapsulate a factory method used to generate some instance of a service. This method will return a different type of wrapper for each different life cycle supported by SwincyBox. The passed in factory method accepts no arguments and simply returns an instance of the service.
     /// - Returns: An type adhering to the service storage protocol which can then be asked to return the service it encapsulates.
-    private func wrapServiceFactory<Service>(forLife life: LifeType, _ factory: @escaping (() -> Service)) -> ServiceStorage {
+    private func wrapServiceFactory<Service>(forLife life: LifeType, _ factory: @escaping (() -> Service)) -> ServiceStoring {
         return wrapServiceFactory(forLife: life) { _ in
             factory()
         }

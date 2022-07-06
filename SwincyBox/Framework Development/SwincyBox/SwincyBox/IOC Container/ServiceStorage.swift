@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Protocol
 /// This protocol declares an interface to retrieve a registered service from a storage wrapper, which either generates, instantiates or provides single access to the service it encapsulates or generates. A method is simply called to return the associated service. How the service is stored or instantiated is of no importance here.
-protocol ServiceStorage {
+protocol ServiceStoring {
     /// Interface for retrieving an instance of the service stored
     /// - Returns: An instance of the service stored
     func returnService(_ resolver: Resolver) -> Any
@@ -17,7 +17,7 @@ protocol ServiceStorage {
 
 // MARK: - Permanent
 /// A wrapper encapsulating the single instance of a registered type. This class will simply store the already instantiated type and return it when requested.
-final class PermanentStore<Service>: ServiceStorage {
+final class PermanentStore<Service>: ServiceStoring {
     /// The stored instance of the service which will be returned when requested.
     private var service: Service?
     /// The factory method used to create an instance of the service
@@ -44,7 +44,7 @@ final class PermanentStore<Service>: ServiceStorage {
 
 // MARK: - Transient
 /// A wrapper encapsulating and storing a factory method used to generate new instances (known as a service) of a registered type. The stored function accepts no arguments and simply returns a newly instantiated type per each request.
-final class TransientStore<Service>: ServiceStorage {
+final class TransientStore<Service>: ServiceStoring {
     /// The factory method used to create an instance of the service each time it is requested.
     private let factory: ((Resolver) -> Service)
     
