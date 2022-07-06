@@ -49,9 +49,9 @@ class ChildContainerTests: XCTestCase {
             // 📦 We can register this Engine as the 'Transmission' protocol resulting in ALL Transmission dependencies becoming VW Engine Models
             return Engine(make: "VW", model: "White-Label Engine v5.0", gears: 6) as Transmission
         }
-        bmwBox = rootBox.addChildBox(forKey: "bmwBox")
+        bmwBox = rootBox.newChildBox(forKey: "bmwBox")
         setUpBMWCars(withChildBox: bmwBox)
-        mercedesBox = rootBox.addChildBox(forKey: "mercedesBox")
+        mercedesBox = rootBox.newChildBox(forKey: "mercedesBox")
         setUpMercedesCars(withChildBox: mercedesBox)
     }
     

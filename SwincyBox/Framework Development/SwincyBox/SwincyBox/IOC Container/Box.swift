@@ -7,31 +7,44 @@
 
 import Foundation
 
-/// Resolver typealias has been used to aid the documentation and readability of the code by using standardised IOC Framework terminology
-public typealias Resolver = Box
+// MARK: - Public API
 
-/// A box represents what's known as a container, using terminology often used when discussing the Inversion Of Control principle. Each box is used to register and store dependencies, which are known as services and are either stored or created by the box used during registration. A typical usage of SwincyBox would be accessing one box throughout the application lifecycle. However, multiple boxes can be created with an option to even chain them together as children boxes. Please note that when calling the resolve function on a box it becomes a first responder, cascading up through the parent chain until either a dependency is returned or the end of the chain is found and a fatalError() will be thrown.
-public final class Box {
-    // MARK: - Properties
-    /// A store of each registered service, or rather the wrapper type that encapsulates it.
-    private var services: [String : ServiceStoring] = [:]
-    /// A weak referenced property linking to the box which created it or nil if it wasn't created by a parent. Parent boxes are used to recursively search upwards to resolve a service.
-    private weak var parentBox: Box? = nil
-    /// An array of all child boxes created by calling the addChildBox() function.
-    private var childBoxes: [String: Box] = [:]
-    /// An array of each current call made to resolve()
-    private var resolveCallLog: [String] = []
+/// The BoxApi exposes the features of the SwincyBox framework. Simply call any of these functions to communicate with your Box
+public protocol BoxApi {
+    // MARK: - Register Services
+    var registeredServiceCount: Int { get }
+    func register<Service>(_ type: Service.Type, key: String?, life: LifeType, _ factory: @escaping (() -> Service)) -> ServiceStoring
+    func register<Service>(_ type: Service.Type, key: String?, life: LifeType, _ factory: @escaping ((Resolver) -> Service)) -> ServiceStoring
+    // MARK: - Resolve Services
+    func resolve<Service>(_ type: Service.Type, key: String?) -> Service
+    // MARK: - Remove Services
+    func clear()
+    // MARK: - Child Boxes
+    func newChildBox(forKey key: String) -> Box
+    func childBox(forKey key: String) -> Box?
+}
+
+// MARK: - Publix API Implementation
+extension Box: BoxApi {
+    // MARK: - Registered Services Utilities
+    /// The number of services registered within this box excluding the services resgitered on any child boxes.
+    public var registeredServiceCount: Int { get { services.count } }
     
-    // MARK: - Exposed Public API
-    public var registeredServiceCount: Int { return services.count }
+    /// The number of services registered within each of the child boxes including the count of all sub child boxes and son and so fourth.
+    public var childServiceCount: Int {
+        get {
+            return registeredServiceCount + childBoxes.reduce(0) { partialResult,entry in partialResult + entry.value.childServiceCount }
+        }
+    }
     
-    /// The constructor used to instantiate an instance of a box. After the class has been initialised the class will then be ready to register each service creation factory.
-    public init () { }
-    
-    // MARK: - Clear Registered Services
-    /// Calling this function will remove all of the services registered with this current box including all child boxes too.
+    /// Calling this function will remove all of the services registered with this current box excluding any child boxes.
     public func clear() {
         services.removeAll()
+    }
+    
+    /// Calling this function will remove all of the services registered with this current box including all child boxes too.
+    public func clearAll() {
+        clear()
         childBoxes.forEach { $0.value.clear() }
     }
     
@@ -49,24 +62,13 @@ public final class Box {
         return registerServiceStore(wrapServiceFactory(forLife: life, factory), type, key)
     }
     
-    /// Call this function to store the wrapped service within the dictionary of registered services.
-    @discardableResult
-    private func registerServiceStore<Service>(_ serviceStore: ServiceStoring, _ type: Service.Type, _ key: String?) -> ServiceStoring {
-        let serviceKey = createServiceKey(for: type, key: key)
-        if let _ = services[serviceKey] {
-            logWarning("Already registerd '\(type)' for key '\(String(describing: key))'")
-        }
-        services[serviceKey] = serviceStore
-        return serviceStore
-    }
-    
     // MARK: - Resolve Dependency
     /// Call this function to resolve (generate or retrieve) an instance of a type of a registered service. If the service has not yet been registered a fatalError() will be thrown. All services must be registered before the first call to resolve for the matching type with a matching key (or nil). Call this method once only within the application lifecycle.
     /// - Returns: An instance of the service requested. The type of the instance returned may only be different from the typecast it was registered for, either through inheritance or protocol adherence. However, it must match the type it was registered with otherwise a fatalError() is thrown.
     public func resolve<Service>(_ type: Service.Type = Service.self, key: String? = nil) -> Service {
         let serviceKey = createServiceKey(for: type, key: key)
         do {
-            return try resolveUsingParentIfNeeded(type, serviceKey: serviceKey) as Service
+            return try resolveCascadingUp(type, serviceKey: serviceKey) as Service
         }
         catch let e as ResolvingError {
             fatalError("SwincyBox: \(e.description)")
@@ -79,7 +81,7 @@ public final class Box {
     /// Calling this function creates and embeds a new child box, which can then be used as a first responder for all calls to resolve cascading upwards through parent boxes until the dependency is resolved.
     /// - Parameter key: A unique string key identifier to be used when retrieving each specific box.
     /// - Returns: A newly created child box stored and retrieved by passed in key identifier.
-    public func addChildBox(forKey key: String) -> Box {
+    public func newChildBox(forKey key: String) -> Box {
         let box = Box()
         box.parentBox = self
         box.services = services // copies a snapshot of the existing dictionary. instances remain the same
@@ -100,8 +102,62 @@ public final class Box {
         }
         return childBox
     }
+}
+
+// MARK: - Resolver Type Alias
+/// Resolver typealias has been used to aid the documentation and readability of the code by using standardised IOC Framework terminology
+public typealias Resolver = Box
+
+// MARK: - Box Declaration
+/// A box represents what's known as a container, using terminology often used when discussing the Inversion Of Control principle. Each box is used to register and store dependencies, which are known as services and are either stored or created by the box used during registration. A typical usage of SwincyBox would be accessing one box throughout the application lifecycle. However, multiple boxes can be created with an option to even chain them together as children boxes. Please note that when calling the resolve function on a box it becomes a first responder, cascading up through the parent chain until either a dependency is returned or the end of the chain is found and a fatalError() will be thrown.
+public final class Box {
+    // MARK: - Properties
+    /// A store of each registered service, or rather the wrapper type that encapsulates it.
+    private var services: [String : ServiceStoring] = [:]
+    /// A weak referenced property linking to the box which created it or nil if it wasn't created by a parent. Parent boxes are used to recursively search upwards to resolve a service.
+    private weak var parentBox: Box? = nil
+    /// An array of all child boxes created by calling the addChildBox() function.
+    private var childBoxes: [String: Box] = [:]
+    /// An array of each current call made to resolve()
+    private var resolveCallLog: [String] = []
     
-    // MARK: - Internally Resolve Dependency
+    // MARK: - Init
+    /// The constructor used to instantiate an instance of a box. After the class has been initialised the class will then be ready to register each service creation factory.
+    public init () { }
+}
+
+// MARK: - Register A Service
+extension Box {
+    /// Call this function to store the wrapped service within the dictionary of registered services.
+    @discardableResult
+    private func registerServiceStore<Service>(_ serviceStore: ServiceStoring, _ type: Service.Type, _ key: String?) -> ServiceStoring {
+        let serviceKey = createServiceKey(for: type, key: key)
+        if let _ = services[serviceKey] {
+            logWarning("Already registerd '\(type)' for key '\(String(describing: key))'")
+        }
+        services[serviceKey] = serviceStore
+        return serviceStore
+    }
+}
+
+// MARK: - Resolve A Service
+extension Box {
+    /// The root method for resolving a registered service. If the box cannot resolve the service then we recursively search each parent box until the type is resolved or we reach the end of the parent chain, in which case a ResolvingError is thrown.
+    /// - Returns: an instance of the registered type associated with both the generically assigned type (using Swift Generics) and the supplied key identifier.
+    private func resolveCascadingUp<Service>(_ type: Service.Type = Service.self, serviceKey: String) throws -> Service {
+        defer { popCallToResolve() }
+        do {
+            try logCallToResolve(serviceKey)
+            let service = try attempToResolve(type, serviceKey: serviceKey) ?? parentBox?.resolveCascadingUp(type, serviceKey: serviceKey)
+            guard let typecastService = service else {
+                throw ResolvingError.unregisteredType(key: serviceKey)
+            }
+            return typecastService
+        } catch {
+            throw error
+        }
+    }
+    
     /// The first method to be called within the lightly recursive approach of cascading upwards through the chain of parent boxes. Similar to becoming a first responder, each child box is given an opportunity to return the service requested using this method attempToResolve().
     /// - Returns: An optional value representing the registered service. Nil if no such service could be resolved by this box.
     private func attempToResolve<Service>(_ type: Service.Type = Service.self, serviceKey: String) throws -> Service? {
@@ -125,24 +181,10 @@ public final class Box {
     private func popCallToResolve() {
         resolveCallLog.removeLast()
     }
-    
-    /// The root method for resolving a registered service. If the box cannot resolve the service then we recursively search each parent box until the type is resolved or we reach the end of the parent chain, in which case a ResolvingError is thrown.
-    /// - Returns: an instance of the registered type associated with both the generically assigned type (using Swift Generics) and the supplied key identifier.
-    private func resolveUsingParentIfNeeded<Service>(_ type: Service.Type = Service.self, serviceKey: String) throws -> Service {
-        defer { popCallToResolve() }
-        do {
-            try logCallToResolve(serviceKey)
-            let service = try attempToResolve(type, serviceKey: serviceKey) ?? parentBox?.resolveUsingParentIfNeeded(type, serviceKey: serviceKey)
-            guard let typecastService = service else {
-                throw ResolvingError.unregisteredType(key: serviceKey)
-            }
-            return typecastService
-        } catch {
-            throw error
-        }
-    }
-    
-    // MARK: - Service Storage
+}
+
+// MARK: - Service Storage
+extension Box {
     /// A centralised location used to generate a unique key from both the service type and associated key used for service retrieval. The returned key will then be used to store and retrieve the associated service.
     /// - Returns: A unique key generated from both the service type and associated key used for service retrieval.
     private func createServiceKey<Service>(for type: Service, key: String?) -> String {
