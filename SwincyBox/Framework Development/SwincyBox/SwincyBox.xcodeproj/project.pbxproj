@@ -35,6 +35,8 @@
 		0C945781285A38B7008CA04F /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C945780285A38B6008CA04F /* Box.swift */; };
 		0CE73E482875A50800ED0116 /* CircularDependencyTests_transient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE73E472875A50800ED0116 /* CircularDependencyTests_transient.swift */; };
 		0CE73E4A2875A55000ED0116 /* WeakRefCircularDependencyTests_permanent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE73E492875A55000ED0116 /* WeakRefCircularDependencyTests_permanent.swift */; };
+		0CE73E4D2875A5FE00ED0116 /* OnIntialisedTests_permanent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE73E4B2875A5FE00ED0116 /* OnIntialisedTests_permanent.swift */; };
+		0CE73E4E2875A5FE00ED0116 /* OnIntialisedTests_transient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE73E4C2875A5FE00ED0116 /* OnIntialisedTests_transient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,8 @@
 		0C945780285A38B6008CA04F /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		0CE73E472875A50800ED0116 /* CircularDependencyTests_transient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularDependencyTests_transient.swift; sourceTree = "<group>"; };
 		0CE73E492875A55000ED0116 /* WeakRefCircularDependencyTests_permanent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakRefCircularDependencyTests_permanent.swift; sourceTree = "<group>"; };
+		0CE73E4B2875A5FE00ED0116 /* OnIntialisedTests_permanent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnIntialisedTests_permanent.swift; sourceTree = "<group>"; };
+		0CE73E4C2875A5FE00ED0116 /* OnIntialisedTests_transient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnIntialisedTests_transient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +187,8 @@
 		0C9396302865CA2F003BC829 /* Circular Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				0CE73E4B2875A5FE00ED0116 /* OnIntialisedTests_permanent.swift */,
+				0CE73E4C2875A5FE00ED0116 /* OnIntialisedTests_transient.swift */,
 				0CE73E472875A50800ED0116 /* CircularDependencyTests_transient.swift */,
 				0C360FCD285F49A8009E3AFC /* CircularDependencyTests_permanent.swift */,
 				0C36102B28609E66009E3AFC /* WeakCircularDependencyTests_transient.swift */,
@@ -390,9 +396,11 @@
 				0C360FF9285FE316009E3AFC /* ResolvingStructsTests.swift in Sources */,
 				0CE73E482875A50800ED0116 /* CircularDependencyTests_transient.swift in Sources */,
 				0C360FF0285FACB7009E3AFC /* DifferentInstanceTests_Permenant.swift in Sources */,
+				0CE73E4D2875A5FE00ED0116 /* OnIntialisedTests_permanent.swift in Sources */,
 				0C9396322865CEDF003BC829 /* ResolvingAsProtocolTests.swift in Sources */,
 				0C9396292865C2B9003BC829 /* Car.swift in Sources */,
 				0C9396392865D2CC003BC829 /* CarRepairManual.swift in Sources */,
+				0CE73E4E2875A5FE00ED0116 /* OnIntialisedTests_transient.swift in Sources */,
 				0C360FEE285FACA8009E3AFC /* DifferentInstanceTests_Transient.swift in Sources */,
 				0C93962A2865C2B9003BC829 /* Vehicle.swift in Sources */,
 				0C9396362865D289003BC829 /* CarHandbook.swift in Sources */,
