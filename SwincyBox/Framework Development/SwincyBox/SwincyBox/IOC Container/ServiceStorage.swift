@@ -12,7 +12,7 @@ import Foundation
 protocol ServiceStoring {
     /// Interface for retrieving an instance of the service stored
     /// - Returns: An instance of the service stored
-    func returnService(_ resolver: Resolver) -> Any
+    func service(_ resolver: Resolver) -> Any
 }
 
 // MARK: - Permanent
@@ -32,7 +32,7 @@ final class PermanentStore<Service>: ServiceStoring {
     /// This function returns the single stored instance of the service
     /// - Parameter resolver: The resolver object to be used when resolving dependencies
     /// - Returns: A newly created service with each function call.
-    func returnService(_ resolver: Resolver) -> Any {
+    func service(_ resolver: Resolver) -> Any {
         if let service = self.service {
             return service
         }
@@ -57,7 +57,7 @@ final class TransientStore<Service>: ServiceStoring {
     /// This function returns a newly created service with each function call.
     /// - Parameter resolver: The resolver object to be used when resolving dependencies.
     /// - Returns: A newly created service with each function call.
-    func returnService(_ resolver: Resolver) -> Any {
+    func service(_ resolver: Resolver) -> Any {
         return factory(resolver)
     }
 }

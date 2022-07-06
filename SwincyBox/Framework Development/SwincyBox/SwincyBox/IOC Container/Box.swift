@@ -92,7 +92,7 @@ public final class Box {
     /// - Returns: An optional value representing the registered service. Nil if no such service could be resolved by this box.
     private func attempToResolve<Service>(_ type: Service.Type = Service.self, key: String? = nil) -> Service? {
         guard let storage = services[serviceKey(for: type, key: key)] else { return nil }
-        return storage.returnService(self) as? Service
+        return storage.service(self) as? Service
     }
     
     /// The root method for resolving a registered service. If the box cannot resolve the service then we recursively search each parent box until the type is resolved or we reach the end of the parent chain, in which case a fatalError() is thrown.
