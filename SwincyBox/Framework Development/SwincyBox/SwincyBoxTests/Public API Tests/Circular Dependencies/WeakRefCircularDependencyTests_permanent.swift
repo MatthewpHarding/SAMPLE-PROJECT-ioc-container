@@ -19,7 +19,7 @@ import XCTest
  */
 // MARK: - Test Models With Circular Dependencies
 private class CrashTestDummy {
-    var car: SafetyTestCar              // 💡 A strong reference is used here
+    private(set) var car: SafetyTestCar              // 💡 A strong reference is used here
     
     init (car: SafetyTestCar) {
         self.car = car

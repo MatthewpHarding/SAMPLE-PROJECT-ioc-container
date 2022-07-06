@@ -20,7 +20,7 @@ import XCTest
 
 // MARK: - Test Models With Circular Dependencies
 private class CrashTestDummy {
-    var car: SafetyTestCar          // 💡 Retain cycles will exist here, as both properties use strong references
+    private(set) var car: SafetyTestCar          // 💡 Retain cycles will exist here, as both properties use strong references
  
     init (car: SafetyTestCar) {
         self.car = car
