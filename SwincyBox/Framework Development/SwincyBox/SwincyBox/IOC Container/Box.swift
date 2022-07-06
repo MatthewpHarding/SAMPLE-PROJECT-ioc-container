@@ -19,6 +19,8 @@ public final class Box {
     private weak var parentBox: Box? = nil
     /// An array of all child boxes created by calling the addChildBox() function.
     private var childBoxes: [String: Box] = [:]
+    /// An array of each current call made to resolve()
+    private var resolveCallLog: [String] = []
     
     // MARK: - Exposed Public API
     public var registeredServiceCount: Int { return services.count }
@@ -110,10 +112,26 @@ public final class Box {
         return typecastService
     }
     
+    // MARK: - Resolving Dependency Call Log
+    /// Call this method each time a request is made to resolve a service. With each function call we will add the service key to a stack of service keys representing the call stack to resolve.
+    private func logCallToResolve(_ serviceKey: String) throws {
+        if resolveCallLog.contains(serviceKey) {
+            throw ResolvingError.infinateRecurrsionDetected(stack: resolveCallLog)
+        }
+        resolveCallLog.append(serviceKey)
+    }
+    
+    /// Call thsi function when the call to resolve a service exits. It will remove the last entry pushed ontop of the call stack to resolve.
+    private func popCallToResolve() {
+        resolveCallLog.removeLast()
+    }
+    
     /// The root method for resolving a registered service. If the box cannot resolve the service then we recursively search each parent box until the type is resolved or we reach the end of the parent chain, in which case a ResolvingError is thrown.
     /// - Returns: an instance of the registered type associated with both the generically assigned type (using Swift Generics) and the supplied key identifier.
     private func resolveUsingParentIfNeeded<Service>(_ type: Service.Type = Service.self, serviceKey: String) throws -> Service {
+        defer { popCallToResolve() }
         do {
+            try logCallToResolve(serviceKey)
             let service = try attempToResolve(type, serviceKey: serviceKey) ?? parentBox?.resolveUsingParentIfNeeded(type, serviceKey: serviceKey)
             guard let typecastService = service else {
                 throw ResolvingError.unregisteredType(key: serviceKey)
@@ -144,9 +162,7 @@ public final class Box {
     /// A function to encapsulate a factory method used to generate some instance of a service. This method will return a different type of wrapper for each different life cycle supported by SwincyBox. The passed in factory method accepts no arguments and simply returns an instance of the service.
     /// - Returns: An type adhering to the service storage protocol which can then be asked to return the service it encapsulates.
     private func wrapServiceFactory<Service>(forLife life: LifeType, _ factory: @escaping (() -> Service)) -> ServiceStoring {
-        return wrapServiceFactory(forLife: life) { _ in
-            factory()
-        }
+        return wrapServiceFactory(forLife: life) { _ in factory() }
     }
 }
 
