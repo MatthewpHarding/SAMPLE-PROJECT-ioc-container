@@ -42,6 +42,7 @@
 		0CE73E542875B1DF00ED0116 /* TransientStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE73E532875B1DF00ED0116 /* TransientStore.swift */; };
 		0CE73E562875CC1900ED0116 /* FatalErrorsTest_InfinateLoops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE73E552875CC1900ED0116 /* FatalErrorsTest_InfinateLoops.swift */; };
 		0CE73E5828762DB700ED0116 /* FatalErrorsTest_Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE73E5728762DB700ED0116 /* FatalErrorsTest_Registration.swift */; };
+		0CE73E5F28764B8800ED0116 /* BoxApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE73E5E28764B8800ED0116 /* BoxApi.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		0CE73E532875B1DF00ED0116 /* TransientStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransientStore.swift; sourceTree = "<group>"; };
 		0CE73E552875CC1900ED0116 /* FatalErrorsTest_InfinateLoops.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FatalErrorsTest_InfinateLoops.swift; sourceTree = "<group>"; };
 		0CE73E5728762DB700ED0116 /* FatalErrorsTest_Registration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FatalErrorsTest_Registration.swift; sourceTree = "<group>"; };
+		0CE73E5E28764B8800ED0116 /* BoxApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxApi.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,17 +139,13 @@
 			path = "Public API Tests";
 			sourceTree = "<group>";
 		};
-		0C360FC6285F29C8009E3AFC /* IOC Container */ = {
+		0C360FC6285F29C8009E3AFC /* Swift Files */ = {
 			isa = PBXGroup;
 			children = (
-				0C945780285A38B6008CA04F /* Box.swift */,
-				0CE73E4F2875AE7400ED0116 /* ResolvingError.swift */,
-				0C360FD5285F8544009E3AFC /* LifeType.swift */,
-				0C360F2B285CC2C9009E3AFC /* ServiceStorage.swift */,
-				0CE73E512875B1D200ED0116 /* PermanentStore.swift */,
-				0CE73E532875B1DF00ED0116 /* TransientStore.swift */,
+				0CE73E5E28764B8800ED0116 /* BoxApi.swift */,
+				0CE73E6028764C1E00ED0116 /* Internal */,
 			);
-			path = "IOC Container";
+			path = "Swift Files";
 			sourceTree = "<group>";
 		};
 		0C93961F2865C2B9003BC829 /* Models */ = {
@@ -261,7 +259,7 @@
 			children = (
 				0C945768285A34E5008CA04F /* SwincyBox.h */,
 				0C945769285A34E5008CA04F /* SwincyBox.docc */,
-				0C360FC6285F29C8009E3AFC /* IOC Container */,
+				0C360FC6285F29C8009E3AFC /* Swift Files */,
 			);
 			path = SwincyBox;
 			sourceTree = "<group>";
@@ -282,6 +280,19 @@
 				0CE73E5728762DB700ED0116 /* FatalErrorsTest_Registration.swift */,
 			);
 			path = FatalErrors;
+			sourceTree = "<group>";
+		};
+		0CE73E6028764C1E00ED0116 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				0C945780285A38B6008CA04F /* Box.swift */,
+				0CE73E4F2875AE7400ED0116 /* ResolvingError.swift */,
+				0C360FD5285F8544009E3AFC /* LifeType.swift */,
+				0C360F2B285CC2C9009E3AFC /* ServiceStorage.swift */,
+				0CE73E512875B1D200ED0116 /* PermanentStore.swift */,
+				0CE73E532875B1DF00ED0116 /* TransientStore.swift */,
+			);
+			path = Internal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -395,6 +406,7 @@
 			files = (
 				0C360FD6285F8544009E3AFC /* LifeType.swift in Sources */,
 				0C94576A285A34E5008CA04F /* SwincyBox.docc in Sources */,
+				0CE73E5F28764B8800ED0116 /* BoxApi.swift in Sources */,
 				0C360F2C285CC2C9009E3AFC /* ServiceStorage.swift in Sources */,
 				0C945781285A38B7008CA04F /* Box.swift in Sources */,
 				0CE73E522875B1D200ED0116 /* PermanentStore.swift in Sources */,
