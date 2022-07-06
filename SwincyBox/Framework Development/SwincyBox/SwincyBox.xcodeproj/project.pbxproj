@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0C360F2C285CC2C9009E3AFC /* ServiceStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C360F2B285CC2C9009E3AFC /* ServiceStorage.swift */; };
-		0C360FCE285F49A8009E3AFC /* CircularDependencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C360FCD285F49A8009E3AFC /* CircularDependencyTests.swift */; };
+		0C360FCE285F49A8009E3AFC /* CircularDependencyTests_permanent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C360FCD285F49A8009E3AFC /* CircularDependencyTests_permanent.swift */; };
 		0C360FD6285F8544009E3AFC /* LifeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C360FD5285F8544009E3AFC /* LifeType.swift */; };
 		0C360FEA285FA4CB009E3AFC /* BasicTests_Transient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C360FE9285FA4CB009E3AFC /* BasicTests_Transient.swift */; };
 		0C360FEC285FA53A009E3AFC /* BasicTests_Permanent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C360FEB285FA53A009E3AFC /* BasicTests_Permanent.swift */; };
@@ -17,7 +17,7 @@
 		0C360FF2285FB093009E3AFC /* UsingKeysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C360FF1285FB093009E3AFC /* UsingKeysTests.swift */; };
 		0C360FF4285FB340009E3AFC /* ClearTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C360FF3285FB340009E3AFC /* ClearTests.swift */; };
 		0C360FF9285FE316009E3AFC /* ResolvingStructsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C360FF8285FE316009E3AFC /* ResolvingStructsTests.swift */; };
-		0C36102C28609E66009E3AFC /* WeakRefCircularDependencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C36102B28609E66009E3AFC /* WeakRefCircularDependencyTests.swift */; };
+		0C36102C28609E66009E3AFC /* WeakCircularDependencyTests_transient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C36102B28609E66009E3AFC /* WeakCircularDependencyTests_transient.swift */; };
 		0C9395FC28645DFF003BC829 /* ChildContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9395FB28645DFF003BC829 /* ChildContainerTests.swift */; };
 		0C9396272865C2B9003BC829 /* Showroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9396212865C2B9003BC829 /* Showroom.swift */; };
 		0C9396282865C2B9003BC829 /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9396222865C2B9003BC829 /* Engine.swift */; };
@@ -33,6 +33,8 @@
 		0C945770285A34E5008CA04F /* SwincyBox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C945765285A34E5008CA04F /* SwincyBox.framework */; };
 		0C945776285A34E5008CA04F /* SwincyBox.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C945768285A34E5008CA04F /* SwincyBox.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C945781285A38B7008CA04F /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C945780285A38B6008CA04F /* Box.swift */; };
+		0CE73E482875A50800ED0116 /* CircularDependencyTests_transient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE73E472875A50800ED0116 /* CircularDependencyTests_transient.swift */; };
+		0CE73E4A2875A55000ED0116 /* WeakRefCircularDependencyTests_permanent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE73E492875A55000ED0116 /* WeakRefCircularDependencyTests_permanent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +50,7 @@
 /* Begin PBXFileReference section */
 		0C360F2B285CC2C9009E3AFC /* ServiceStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceStorage.swift; sourceTree = "<group>"; };
 		0C360FBA285E25F2009E3AFC /* Building Framework File */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Building Framework File"; sourceTree = "<group>"; };
-		0C360FCD285F49A8009E3AFC /* CircularDependencyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularDependencyTests.swift; sourceTree = "<group>"; };
+		0C360FCD285F49A8009E3AFC /* CircularDependencyTests_permanent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularDependencyTests_permanent.swift; sourceTree = "<group>"; };
 		0C360FD5285F8544009E3AFC /* LifeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeType.swift; sourceTree = "<group>"; };
 		0C360FE9285FA4CB009E3AFC /* BasicTests_Transient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicTests_Transient.swift; sourceTree = "<group>"; };
 		0C360FEB285FA53A009E3AFC /* BasicTests_Permanent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicTests_Permanent.swift; sourceTree = "<group>"; };
@@ -57,7 +59,7 @@
 		0C360FF1285FB093009E3AFC /* UsingKeysTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsingKeysTests.swift; sourceTree = "<group>"; };
 		0C360FF3285FB340009E3AFC /* ClearTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearTests.swift; sourceTree = "<group>"; };
 		0C360FF8285FE316009E3AFC /* ResolvingStructsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolvingStructsTests.swift; sourceTree = "<group>"; };
-		0C36102B28609E66009E3AFC /* WeakRefCircularDependencyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRefCircularDependencyTests.swift; sourceTree = "<group>"; };
+		0C36102B28609E66009E3AFC /* WeakCircularDependencyTests_transient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakCircularDependencyTests_transient.swift; sourceTree = "<group>"; };
 		0C9395FB28645DFF003BC829 /* ChildContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildContainerTests.swift; sourceTree = "<group>"; };
 		0C9396212865C2B9003BC829 /* Showroom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Showroom.swift; sourceTree = "<group>"; };
 		0C9396222865C2B9003BC829 /* Engine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
@@ -74,6 +76,8 @@
 		0C945769285A34E5008CA04F /* SwincyBox.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = SwincyBox.docc; sourceTree = "<group>"; };
 		0C94576F285A34E5008CA04F /* SwincyBoxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwincyBoxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C945780285A38B6008CA04F /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
+		0CE73E472875A50800ED0116 /* CircularDependencyTests_transient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularDependencyTests_transient.swift; sourceTree = "<group>"; };
+		0CE73E492875A55000ED0116 /* WeakRefCircularDependencyTests_permanent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakRefCircularDependencyTests_permanent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,8 +183,10 @@
 		0C9396302865CA2F003BC829 /* Circular Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				0C360FCD285F49A8009E3AFC /* CircularDependencyTests.swift */,
-				0C36102B28609E66009E3AFC /* WeakRefCircularDependencyTests.swift */,
+				0CE73E472875A50800ED0116 /* CircularDependencyTests_transient.swift */,
+				0C360FCD285F49A8009E3AFC /* CircularDependencyTests_permanent.swift */,
+				0C36102B28609E66009E3AFC /* WeakCircularDependencyTests_transient.swift */,
+				0CE73E492875A55000ED0116 /* WeakRefCircularDependencyTests_permanent.swift */,
 			);
 			path = "Circular Dependencies";
 			sourceTree = "<group>";
@@ -369,18 +375,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CE73E4A2875A55000ED0116 /* WeakRefCircularDependencyTests_permanent.swift in Sources */,
 				0C9395FC28645DFF003BC829 /* ChildContainerTests.swift in Sources */,
 				0C360FF4285FB340009E3AFC /* ClearTests.swift in Sources */,
 				0C93963B2865D379003BC829 /* StructsAsProtocolsTests.swift in Sources */,
 				0C360FEA285FA4CB009E3AFC /* BasicTests_Transient.swift in Sources */,
-				0C360FCE285F49A8009E3AFC /* CircularDependencyTests.swift in Sources */,
+				0C360FCE285F49A8009E3AFC /* CircularDependencyTests_permanent.swift in Sources */,
 				0C360FF2285FB093009E3AFC /* UsingKeysTests.swift in Sources */,
 				0C360FEC285FA53A009E3AFC /* BasicTests_Permanent.swift in Sources */,
-				0C36102C28609E66009E3AFC /* WeakRefCircularDependencyTests.swift in Sources */,
+				0C36102C28609E66009E3AFC /* WeakCircularDependencyTests_transient.swift in Sources */,
 				0C9396282865C2B9003BC829 /* Engine.swift in Sources */,
 				0C93962B2865C2B9003BC829 /* Transmission.swift in Sources */,
 				0C9396342865D252003BC829 /* Handbook.swift in Sources */,
 				0C360FF9285FE316009E3AFC /* ResolvingStructsTests.swift in Sources */,
+				0CE73E482875A50800ED0116 /* CircularDependencyTests_transient.swift in Sources */,
 				0C360FF0285FACB7009E3AFC /* DifferentInstanceTests_Permenant.swift in Sources */,
 				0C9396322865CEDF003BC829 /* ResolvingAsProtocolTests.swift in Sources */,
 				0C9396292865C2B9003BC829 /* Car.swift in Sources */,

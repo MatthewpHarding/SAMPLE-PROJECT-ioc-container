@@ -1,0 +1,77 @@
+//
+//  WeakRefCircularDependencyTests.swift
+//  SwincyBoxTests
+//
+//  Created by Matthew Paul Harding on 19/06/2022.
+//
+
+import XCTest
+@testable import SwincyBox
+
+/*
+    💡 Coding Test Scenario
+    This is just a reminder about the coding test scenario.
+    Client applications may use circular dependencies even though they reflect rather poor architectutral discisions.
+    It is not the role of this Framework to prevent them nor encourage them, but rather ´support´them in a mild manner.
+ 
+    At the very least, we can create some unit tests to understand the scenario and situation a little better.
+ 
+ */
+// MARK: - Test Models With Circular Dependencies
+private class CrashTestDummy {
+    var car: SafetyTestCar              // 💡 A strong reference is used here
+    
+    init (car: SafetyTestCar) {
+        self.car = car
+    }
+}
+
+private class SafetyTestCar {
+    weak var driver: CrashTestDummy?    // 💡 Discussion: A connection here will only exist while an instance of CrashTestDummy is stored somewhere else, like in the box it was registered. However, if no box or entity stores a strong reference then it will be immediately released from memory setting this property to nil.
+    
+    init(driver: CrashTestDummy?) {
+        self.driver = driver
+    }
+}
+
+// MARK: - Storage Type Permanent
+class WeakRefCircularDependencyTests_permanent: XCTestCase {
+    // MARK: - Setup / Tear Down
+    let box = Box()
+
+    override func setUpWithError() throws {
+        box.register(SafetyTestCar.self, life: .permanent) { r in
+            let driver = r.resolve() as CrashTestDummy
+            return driver.car
+        }
+        box.register(CrashTestDummy.self, life: .permanent) { resolver in
+            let driver = CrashTestDummy(car: SafetyTestCar(driver: nil))
+            driver.car.driver = driver
+            return driver
+        }
+    }
+    
+    override func tearDownWithError() throws {
+        box.clear()
+    }
+    
+    // MARK: - Unit Tests
+    func testDriverCircularDependency() {
+        let driver = box.resolve() as CrashTestDummy
+        XCTAssertNotNil(driver.car.driver, "Unexpected value of nil found in circular dependency property driver.car.driver")
+    }
+    
+    func testCarCircularDependency() {
+        let car = box.resolve() as SafetyTestCar
+        XCTAssertNotNil(car.driver?.car, "Unexpected value of nil found in circular dependency property car.driver.car")
+    }
+    
+    func testThatInstancesAreTheSame() {
+        let car = box.resolve() as SafetyTestCar
+        let driver = box.resolve() as CrashTestDummy
+        XCTAssertTrue(car.driver === driver, "Unexpectedly found different instances for circuluar references")
+        XCTAssertTrue(driver.car === car, "Unexpectedly found different instances for circuluar references")
+        XCTAssertTrue(car.driver?.car === car, "Unexpectedly found different instances for circuluar references")
+        XCTAssertTrue(driver.car.driver === driver, "Unexpectedly found different instances for circuluar references")
+    }
+}

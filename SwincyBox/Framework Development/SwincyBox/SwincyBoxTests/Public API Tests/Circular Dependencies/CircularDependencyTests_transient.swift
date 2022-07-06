@@ -35,51 +35,6 @@ private class SafetyTestCar {
     }
 }
 
-// MARK: - Storage Type Permanent
-
-class CircularDependencyTests_permanent: XCTestCase {
-    // MARK: - Setup / Tear Down
-    let box = Box()
-
-    override func setUpWithError() throws {
-        // NOTE: We MUST understand that we have created a retain cycle in ARC by using strong circular references
-        //       Weak references would simply be deallocated immediately and so exists a memory issue
-        box.register(SafetyTestCar.self, life: .permanent) { r in
-            let driver = r.resolve() as CrashTestDummy
-            return driver.car
-        }
-        box.register(CrashTestDummy.self, life: .permanent) { resolver in
-            let driver = CrashTestDummy(car: SafetyTestCar(driver: nil))
-            driver.car.driver = driver
-            return driver
-        }
-    }
-    
-    override func tearDownWithError() throws {
-        box.clear()
-    }
-    
-    // MARK: - Unit Tests
-    func testDriverCircularDependency() {
-        let driver = box.resolve() as CrashTestDummy
-        XCTAssertNotNil(driver.car.driver, "Unexpected value of nil found in circular dependency property driver.car.driver")
-    }
-    
-    func testCarCircularDependency() {
-        let car = box.resolve() as SafetyTestCar
-        XCTAssertNotNil(car.driver?.car, "Unexpected value of nil found in circular dependency property car.driver.car")
-    }
-    
-    func testThatInstancesAreTheSame() {
-        let car = box.resolve() as SafetyTestCar
-        let driver = box.resolve() as CrashTestDummy
-        XCTAssertTrue(car.driver === driver, "Unexpectedly found different instances for circuluar references")
-        XCTAssertTrue(driver.car === car, "Unexpectedly found different instances for circuluar references")
-        XCTAssertTrue(car.driver?.car === car, "Unexpectedly found different instances for circuluar references")
-        XCTAssertTrue(driver.car.driver === driver, "Unexpectedly found different instances for circuluar references")
-    }
-}
-
 // MARK: - Storage Type Transient
 class CircularDependencyTests_transient: XCTestCase {
     // MARK: - Setup / Tear Down
