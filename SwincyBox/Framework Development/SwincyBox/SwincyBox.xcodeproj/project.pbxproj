@@ -37,6 +37,7 @@
 		0CE73E4A2875A55000ED0116 /* WeakRefCircularDependencyTests_permanent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE73E492875A55000ED0116 /* WeakRefCircularDependencyTests_permanent.swift */; };
 		0CE73E4D2875A5FE00ED0116 /* OnIntialisedTests_permanent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE73E4B2875A5FE00ED0116 /* OnIntialisedTests_permanent.swift */; };
 		0CE73E4E2875A5FE00ED0116 /* OnIntialisedTests_transient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE73E4C2875A5FE00ED0116 /* OnIntialisedTests_transient.swift */; };
+		0CE73E502875AE7400ED0116 /* ResolvingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE73E4F2875AE7400ED0116 /* ResolvingError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		0CE73E492875A55000ED0116 /* WeakRefCircularDependencyTests_permanent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakRefCircularDependencyTests_permanent.swift; sourceTree = "<group>"; };
 		0CE73E4B2875A5FE00ED0116 /* OnIntialisedTests_permanent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnIntialisedTests_permanent.swift; sourceTree = "<group>"; };
 		0CE73E4C2875A5FE00ED0116 /* OnIntialisedTests_transient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnIntialisedTests_transient.swift; sourceTree = "<group>"; };
+		0CE73E4F2875AE7400ED0116 /* ResolvingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolvingError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				0C945780285A38B6008CA04F /* Box.swift */,
+				0CE73E4F2875AE7400ED0116 /* ResolvingError.swift */,
 				0C360FD5285F8544009E3AFC /* LifeType.swift */,
 				0C360F2B285CC2C9009E3AFC /* ServiceStorage.swift */,
 			);
@@ -374,6 +377,7 @@
 				0C94576A285A34E5008CA04F /* SwincyBox.docc in Sources */,
 				0C360F2C285CC2C9009E3AFC /* ServiceStorage.swift in Sources */,
 				0C945781285A38B7008CA04F /* Box.swift in Sources */,
+				0CE73E502875AE7400ED0116 /* ResolvingError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
