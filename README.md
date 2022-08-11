@@ -341,17 +341,18 @@ class ShowroomViewController: UIViewController {
 ...
 ```
 
-## Thank You 😃
 
-Thank you to everyone who was a part of this project.
-``SwincyBox`` was a pleasure to create and a great idea by those who suggested it.
+# 🤷🏼‍♂️
 
-### Project Author
-**Matthew Harding**
+Thanks 
 
-All comments, code suggestions and enhancements are welcome. 
+for reading
 
+@[MatthewpHarding](https://github.com/MatthewpHarding)
 
+*written for the `Swift` community*
 
-
-
+```Swift
+let myLife = [learning, coding, happiness] 
+```
+### 🧕🏻👨🏿‍💼👩🏼‍💼👩🏻‍💻👨🏼‍💼🧛🏻‍♀️👩🏼‍💻💁🏽‍♂️🕵🏻‍♂️🧝🏼‍♀️🦹🏼‍♀🧕🏾🧟‍♂️
