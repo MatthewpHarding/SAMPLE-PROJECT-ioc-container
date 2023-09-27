@@ -340,17 +340,9 @@ class ShowroomViewController: UIViewController {
 
 ...
 ```
+-------------------
 
-
-# 🤷🏼‍♂️
-
-Thanks 
-
-for reading
-
-@[MatthewpHarding](https://github.com/MatthewpHarding)
-
-*written for the `Swift` community*
+@ [MatthewpHarding](https://github.com/MatthewpHarding) 🔗
 
 ```Swift
 let myLife = [learning, coding, happiness] 
