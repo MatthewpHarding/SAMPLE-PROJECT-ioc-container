@@ -241,7 +241,7 @@ class SafetyTestCar {
 }
 ```
 
-Wont This Create A Retain Cycle? 
+Wont this create a retain cycle? 
 
 Yes, both classes use a strong reference to each other which creates a retain cycle. This is when both objects increase the retain count of the other object but never decrement it. As the retain count never decrements down to `0`, both objects wont ever be released from memory. This is known as a memory leak. 🚱💦
 
