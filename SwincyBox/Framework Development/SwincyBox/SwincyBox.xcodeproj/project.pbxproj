@@ -57,7 +57,7 @@
 
 /* Begin PBXFileReference section */
 		0C360F2B285CC2C9009E3AFC /* ServiceStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceStorage.swift; sourceTree = "<group>"; };
-		0C360FBA285E25F2009E3AFC /* Building Framework File */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Building Framework File"; sourceTree = "<group>"; };
+		0C360FBA285E25F2009E3AFC /* Building Framework File.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Building Framework File.txt"; sourceTree = "<group>"; };
 		0C360FCD285F49A8009E3AFC /* CircularDependencyTests_permanent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularDependencyTests_permanent.swift; sourceTree = "<group>"; };
 		0C360FD5285F8544009E3AFC /* LifeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeType.swift; sourceTree = "<group>"; };
 		0C360FE9285FA4CB009E3AFC /* BasicTests_Transient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicTests_Transient.swift; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 		0C0B7FF1286602FB008A0B6F /* Build For Distribution */ = {
 			isa = PBXGroup;
 			children = (
-				0C360FBA285E25F2009E3AFC /* Building Framework File */,
+				0C360FBA285E25F2009E3AFC /* Building Framework File.txt */,
 			);
 			name = "Build For Distribution";
 			sourceTree = "<group>";
