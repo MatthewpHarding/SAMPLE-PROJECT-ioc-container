@@ -1,6 +1,4 @@
 # 📦 `SwincyBox`
-Swift Dependency Injection Box - *SwincyBox*. 
-
 A Swift dependency injection *(IOC Container)* framework for iOS, supporting the "inversion of control" principle.
 
 ## Overview
